@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+            <i class="icon-align-justify"></i>                  
+          </span>
+          <h5>Create New Auction</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <%= form_for(@auction, :url => auction_admin_auctions_path, :html => { :method => :post, :class=>"form-horizontal" } ) do |f| %>
+            <div class="control-group">
+              <label class="control-label">Auction Type</label>
+              <div class="controls">
+                <label><%= f.check_box :title %> Title </label>
+                <label><input type="checkbox" name="radios" /> Second One</label>
+                <label><input type="checkbox" name="radios" /> Third One</label>
+                <label><input type="checkbox" name="radios" /> Second One</label>
+                <label><input type="checkbox" name="radios" /> Third One</label>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <div class="controls">
+                <%= f.submit :class=>"btn btn-primary" %>
+              </div>
+            </div>
+            
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<% if resource.errors.any? %>
+  <%= error_message(resource.errors.full_messages, 'alert-error')%>
+<% end %>
+<div class="widget-box">
+  <div class="widget-title">
+    <span class="icon">
+      <i class="icon-pencil"></i>
+    </span>
+    <h5>Update Profile</h5>
+  </div>
+  <div class="widget-content">
+    <div class="row">
+      <div class="span2"></div>
+      <div class="span8 ">
+        <div class="row">&nbsp;</div>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+          <div class="row">
+            <%= hidden_field_tag :id, resource[:id] %>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :first_name, :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <% if resource.first_name.blank? %>
+                <%= f.text_field :first_name, :class => "required",
+                  :style => "border: solid 1px red" %>
+              <% else %>
+                <%= f.text_field :first_name, :class => "required" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :last_name,:class=>"control-label" %>
+            </div>
+            <div class="span4">
+            <% if resource.first_name.blank? %>
+              <%= f.text_field :last_name, :class => "required",
+               :style => "border: solid 1px red" %>
+            <% else %>
+              <%= f.text_field :last_name, :class => "required" %>
+            <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :email,:class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.text_field :email, :disabled => 'disabled'%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :phone_number, :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.text_field :phone_number %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :address, :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.text_field :address %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="span4">
+              <%= f.label "City / Town", :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.text_field :city %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label "State / Province", :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.text_field :state %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :zip_code, :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.text_field :zip_code%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :country, :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.country_select :country, ["United States"]%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span4">
+              <%= f.label :timezone, :class=>"control-label" %>
+            </div>
+            <div class="span4">
+              <%= f.time_zone_select :timezone, nil, :default => (f.object.timezone || get_time_zone_from_ip(request.ip)) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span3"></div>
+            <div class="span4 offset1">
+              <%= f.submit "Update Profile", :class =>"btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="span2"></div>
+    </div>
+  </div>
+</div>   
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $(".required").bind('blur keyup', function(){
+      set_ccs_in_mandatory_field($(this));
+    });
+
+    var set_ccs_in_mandatory_field = function(element){
+      var element_value = $(element).val().trim();
+      if( element_value == ''){
+        $(element).css("border", "solid 1px red");
+      }else{
+        $(element).css("border", "");
+      }
+    }
+    
+  });
+</script>

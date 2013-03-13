@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+            <i class="icon-align-justify"></i>                  
+          </span>
+          <h5>Text inputs</h5>
+        </div>
+        <div class="widget-content nopadding">
+        
+          <%= form_for(@auction, :url => auction_admin_auction_path, :html => { :method => :put, :class=>"form-horizontal" } ) do |f| %>
+            <div class="control-group">
+              <label class="control-label">Title</label>
+              <div class="controls">
+                <%= f.text_field :title %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Description</label>
+              <div class="controls">
+                <%= f.text_field :description %>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Currency</label>
+              <div class="controls">
+                <%= f.text_field :currency %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Event url</label>
+              <div class="controls">
+                <%= f.text_field :event_url %>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Start time</label>
+              <div class="controls">
+                <%= f.datetime_select :start_time %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">End time</label>
+              <div class="controls">
+                <%= f.datetime_select :end_time %>
+              </div>
+            </div>
+                                    
+            <div class="control-group">
+              <label class="control-label">Time zone</label>
+              <div class="controls">
+                <%= f.text_field :timezone %>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label">File upload (Banner) </label>
+              <div class="controls">
+               <%= image_tag(@auction.banner_url(:banner)) if @auction.banner? %>
+               <%= f.file_field :banner %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">File upload (Logo) </label>
+              <div class="controls">
+               <%= image_tag(@auction.logo_url(:logo)) if @auction.logo? %>
+               <%= f.file_field :logo %>
+              </div>
+            </div>            
+            <div class="form-actions">
+              <%= f.submit "Save", :class=>"btn btn-primary" %>
+            </div>
+            
+          <% end %>
+        </div>
+      </div>            
+    </div>
+  </div>
+</div>

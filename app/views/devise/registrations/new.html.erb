@@ -1,0 +1,40 @@
+<div id="box_login">
+  <div class="container">
+    <div class="span12 box_wrapper">
+      <div class="span12 box box_mandetory">
+        <% if resource.errors.any? %>
+          <%= error_message(resource.errors.full_messages, 'alert-error')%>
+        <% end %>
+        <div>
+          <!--<div class="head">
+            <h4>Log in to your account</h4>
+          </div>
+          -->
+          <div class="social" style="text-align: center;">
+            <%# ["facebook", "google", "linkedin"].each do |provider| %>
+              <%#= link_to image_tag("#{provider}.png", :style => "margin:2px;"), "/auth/#{provider}" %>
+            <%# end %>
+            <!--<div class="division">
+              <hr class="left">
+              <span>or</span>
+              <hr class="right">
+            </div>
+            -->
+          </div>            
+          <div class="head">
+            <h4>Create your account</h4>
+          </div>
+          <div class="form">
+            <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= f.text_field :email, :placeholder => "Email" %>
+              <%= f.password_field :password, :placeholder => "Password" %>
+              <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %> 
+              <%= f.submit "Sign up" , :class =>"btn" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <p class="already">Already have an account? <%= link_to('Sign in', new_user_session_path) %></p>
+    </div>
+  </div>
+</div>

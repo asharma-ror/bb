@@ -1,0 +1,28 @@
+.row-size{
+  line-height: 25px;
+  div.font-style{
+    font-weight: bold;
+  }
+}
+.profile_box{
+  background: none repeat scroll 0 0 white; 
+  border: 2px solid #A9A9A9;
+}
+.progress_bar_completeness{
+  margin-top: 8px; 
+  margin-bottom: 15px;
+}
+.dashboard_stats_box {
+  width: 80px !important;
+}
+.content-header-override{
+  height: 110px !important;
+}
+.setup_event_btn{
+  background: none repeat scroll 0 0 green; 
+  font-weight: bold; 
+  margin-top: -76px; 
+  height: 44px; 
+  width: 180px; 
+  padding: 19px 9px 0 10px;
+}

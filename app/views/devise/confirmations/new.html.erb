@@ -1,0 +1,27 @@
+<div id="box_reset">
+  <div class="container">
+    <div class="span12 box_wrapper">
+      <div class="span12 box box_mandetory">
+        <div>
+          <div class="head">
+            <h4>Resend confirmation instructions</h4>
+          </div>
+          <div class="form">
+            <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+              <%= devise_error_messages! %>
+              <%= f.text_field :email, :placeholder => "Email Address" %>
+              <% unless mobile_device? %>
+                <%= raw recaptcha_tag(:challenge, :display => {:theme => 'white'}) %><br/>
+              <% end %>
+              <%= f.submit "Resend confirmation instructions", :class=> "btn" %>
+            <% end %>
+          </div>                
+        </div>
+      </div>
+      <p class="already">Don't have an account? <%= link_to('Sign up', new_auction_admin_registration_path) %></p>
+      <p class="already">Have an account? <%= link_to "Sign in", new_session_path(resource_name) %></p>
+      <p class="already">Forgot password? <%= link_to "Reset", new_password_path(resource_name) %></p>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,87 @@
+<%=render :partial => "shared/header_container"%>
+<div id="breadcrumb">
+	<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+	<%= link_to 'Projects', projects_path  %>
+	<%= link_to 'Exceptions', exception_path(@project), :class => "current"  %>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span10">
+    </div>
+    <div class="span2">
+      <div class="btn-group">
+        <button class="btn">All Errors</button>
+        <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'All Errors', exception_path(@project)  %></li>
+          <li><%= link_to 'Resolved', exception_path(@project)  %></li>
+          <li><%= link_to 'Unresolved', exception_path(@project)  %></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+            <i class="icon-th"></i>
+          </span>
+          <h5><%=@project.name %> / Unresolved errors</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Error</th>
+                <th>Status</th>
+                <th>Times</th>
+                <th>Last Seen</th>
+                <th></th>
+              </tr>
+            </thead>
+            <% @exceptions.each do |exception| %>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td width="60%" >
+                    <error-message url="<%=error_trace_path(:project_id => exception.project.id, :error_id => exception.id)%>" style="cursor:pointer;">
+                      <i class="icon icon-arrow-right"></i>
+                      <span>
+                        <b><%= exception.title %></b><br/>
+                        <%= exception.desc %>
+                      </span>
+                    </error-message>
+                  </td>
+                  <td>
+                    <%= exception.status %>
+                  </td>
+                  <td>
+                    <i class="icon icon-signal"></i>
+                    <span><%= exception.count %></span>
+                  </td>
+                  <td>
+                    <%= distance_of_time_in_words(Time.now, exception.updated_at) %> ago
+                  </td>
+                  <td>
+                    <button class="btn btn-inverse"><i class="icon-star-empty icon-white"></i> Unresolved</button>
+                  </td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>							
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_tag do %>
+  $("error-message").click(
+    function(){
+      window.location = $(this).attr("url");
+    });
+<% end %>
+

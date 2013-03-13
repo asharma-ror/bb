@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="span2"></div>
+    <div class="span8">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+            <i class="icon-user"></i>
+          </span>
+          <h5>My Store Information</h5>
+        </div>
+        
+        <div class="widget-content">
+          <div>
+            <%= image_tag(@admin_setting.banner_url(:banner)) if @admin_setting.banner? %>
+          </div>
+          <div class="row row-size">
+            <div class="span2" style="text-align:left">
+              <span style="font-weight:bold">Title</span>
+            </div>
+            <div class="span5">
+              <%= @admin_setting.title %>
+            </div>
+          </div>
+          <div class="row row-size">
+            <div class="span2" style="text-align:left">
+              <span style="font-weight:bold">Description</span>
+            </div>
+            <div class="span5">
+              <%= @admin_setting.description unless @admin_setting.description.blank? %>
+            </div>
+          </div>
+          <div class="row row-size">
+            <div class="span2" style="text-align:left">
+              <span style="font-weight:bold">Term and Condition</span>
+            </div>
+            <div class="span5">
+              <%= @admin_setting.terms_and_conditions %>
+            </div>
+          </div>
+          <div class="row row-size">
+            <div class="span2" style="text-align:left">
+              <span style="font-weight:bold">Timezone</span>
+            </div>
+            <div class="span5">
+              <%= @admin_setting.timezone %>
+            </div>
+          </div>
+          <div class="row row-size">
+            <div class="span2" style="text-align:left">
+              <span style="font-weight:bold">Currency</span>
+            </div>
+            <div class="span5">
+              <%= @admin_setting.currency %>
+            </div>
+          </div>
+          <div class="row row-size">
+            <div class="span2" style="text-align:left">
+              <span style="font-weight:bold">Store Logo</span>
+            </div>
+            <div class="span5">
+              <%= image_tag(@admin_setting.logo_url(:logo)) if @admin_setting.logo? %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span3"></div>
+  </div>
+</div>

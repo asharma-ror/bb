@@ -1,0 +1,23 @@
+<% content_for :header do %>
+  <h1>Update Your Profile</h1>
+<% end %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <%= render :partial => 'update_auction_admin' %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  var required_fields = $('input.required');
+  required_fields.each(function(element){
+    var element_value = $(this).val().trim();
+    if( element_value == ''){
+      $(this).css("border", "solid 1px red");
+    }else{
+      $(this).css("border", "");
+    }
+  });
+});
+</script>

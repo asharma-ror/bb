@@ -1,0 +1,42 @@
+<%=render :partial => "shared/header_container"%>
+<div id="breadcrumb">
+	<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+	<%= link_to 'Projects', projects_path  %>
+	<%= link_to 'Edit Project', edit_project_path(@project), :class => "current"  %>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+     <div class="span10">
+     </div>
+     <div class="span2">
+       <%= link_to new_project_path do  %>
+       <button class="btn btn-success">Create New Project</button>
+       <% end %>
+     </div>
+   </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+            <i class="icon-th"></i>
+          </span>
+          <h5>Editing project</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+     <div class="span12">
+       <%= link_to projects_path do %>
+         <button class="btn btn-primary">Back</button>
+       <% end %>
+     </div>
+   </div>
+</div>
+
+

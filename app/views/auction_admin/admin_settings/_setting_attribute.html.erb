@@ -1,0 +1,46 @@
+<div class="control-group">
+  <label class="control-label">Time Zone</label>
+  <div class="controls">
+    <%= f.time_zone_select :timezone, nil, :default => (f.object.timezone || get_time_zone_from_ip(request.ip)) %>
+  </div>
+</div>  
+<div class="control-group">
+  <label class="control-label">Currency</label>
+  <div class="controls">
+    <%= f.select :currency, CURRENCIES.collect{|c| [c[1], c[0]]}, :prompt => "Pick a Currency" %>
+  </div>
+</div>            
+<div class="control-group">
+  <label class="control-label">Custom Url</label>
+  <div class="controls">
+    <%= f.text_field :custom_url %>
+  </div>
+</div>               
+<div class="control-group">
+  <label class="control-label">Background Color</label>
+  <div class="controls">
+      <input type="text" data-color="#000000" value="#000000" class="colorpicker input-small" />
+  </div>
+</div>       
+<div class="control-group">
+  <label class="control-label">Term and condition</label>
+  <div class="controls">
+    <%= f.text_area :terms_and_conditions, :rows=>"4" %>
+  </div>
+</div>                             
+<div class="control-group">
+  <label class="control-label">Select</label>
+  <div class="controls">
+    <label><%= f.check_box :customize_bid_sheet %> Customize Bid Sheet</label>
+    <label><%= f.check_box :customize_invoice %> Customize Invoice</label>
+  </div>
+</div>
+<div class="control-group">  
+  <div class="span offset2">What information do you want to collect from your bidders?</div>
+  <div class="controls">
+    <label><%= f.check_box :bidder_email, :disabled => true %> Bidder Email</label>
+    <label><%= f.check_box :bidder_name, :disabled => true %> Bidder Name</label>
+    <label><%= f.check_box :bidder_address %> Bidder Address</label>
+    <label><%= f.check_box :bidder_phone %> Bidder Phone</label>
+  </div>
+</div>

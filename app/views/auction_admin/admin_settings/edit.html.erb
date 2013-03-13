@@ -1,0 +1,5 @@
+<div class="container-fluid">
+  <%= simple_form_for(@admin_setting, :url => auction_admin_admin_settings_path, :html => { :method => :put, :class=>"form-horizontal" } ) do |f| %>
+    <%= render :partial => 'form', :locals=>{:f => f} %>
+  <% end %>
+</div>

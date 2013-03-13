@@ -1,0 +1,20 @@
+<div id="sidebar">
+  <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+  <ul>
+    <li <% if params[:controller] == "projects" %>class="active" <% end %>>
+      <%= link_to '<i class="icon icon-list-alt"></i><span>Projects</span>'.html_safe, projects_path %>
+    </li>
+    <li>
+      <%= link_to '<i class="icon icon-cog"></i><span>Settings</span>'.html_safe, "javascript:void(0);" %>
+    </li>
+  </ul>
+</div>
+<!--
+<div id="style-switcher">
+  <i class="icon-arrow-left icon-white"></i>
+  <span>Style:</span>
+  <a href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
+  <a href="#blue" style="background-color: #2D2F57;"></a>
+  <a href="#red" style="background-color: #673232;"></a>
+</div>
+-->

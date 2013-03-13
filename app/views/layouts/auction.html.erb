@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unicorn Admin</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "auction_admin_application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+  <style type="text/css">
+    abbr {
+      color: red;
+    }
+    .error{
+      color: red;
+    }
+  </style>
+
+  </head>
+  <body>
+    <%= render :partial => "layouts/header" %>
+    <div id="content">
+      <div id="content-header" class="content-header-override">
+        <%= yield :header %>
+      </div>
+      <div id="breadcrumb">
+        <%= yield :breadcrumb %>
+      </div>
+      <div class="flash row margin-auto">
+        <div class="aution_flash_message">
+          <%= render 'shared/flash_messages' %>
+
+        </div>
+      </div>
+      <%= yield %>
+      <%= render :partial => "layouts/admin_footer" %>
+    </div>
+
+    <%= javascript_include_tag "auction_admin_application" %>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<li class="nav-header">List header</li>
+<li class="nav-header"></li>
+<li><%= link_to('Home', root_path, :class=>"navbar-link") %></li>
+<li><%= link_to('Sign In', new_auction_admin_session_path, :class=>"navbar-link") %></li>
+<li><%= link_to('Sign Up', new_auction_admin_registration_path, :class=>"navbar-link") %></li>
+
+<% if !current_auction_admin %>
+  <div class="omniauth-connect">
+    <h4>Sign in with</h4>
+    <% ["Facebook"].each do |provider| %>
+      <li><%= link_to "#{provider}", "/auth/#{provider}" %></li>
+    <% end %>
+    <h4><%= link_to 'Back', new_session_url if params[:controller] == 'users' %></h4>
+  </div>
+<% end %>

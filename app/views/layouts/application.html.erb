@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="K_qF--oB5o1XNCluU6A320YLOyC1Fmxe84K7bhmpGKU" />
+  <title>BatBugger beta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "frontend_application", :media => "all" %>
+
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <style type="text/css">
+    .carousel-control {
+      font-size: 35px;
+      font-weight: bold;
+      height: 30px;
+      line-height: 23px;
+      opacity: 1;
+      top: 50%;
+      width: 30px;
+    }
+    abbr {
+      color: red; 
+    }
+  </style>
+  
+</head>
+<body>
+  <%= render :partial => "layouts/home_header" %>
+  <div class="flash row margin-auto">
+    <div class="flash_message">
+      <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+          <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+            <a class="close" data-dismiss="alert">&#215;</a>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%= yield%>
+  <%= render :partial => "layouts/footer" %>
+  <%= javascript_include_tag "frontend_application" %>
+</body>
+</html>

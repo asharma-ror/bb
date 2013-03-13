@@ -1,0 +1,28 @@
+<div id="header">
+  <h1 class="logo_fix">
+    <%= link_to "CAT Admin", "javascript:void(0);" %>
+  </h1>
+</div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav btn-group">
+    <li class="btn btn-inverse" >
+      <%= link_to '<i class="icon icon-home"></i> <span class="text">Home</span>'.html_safe, root_path %>
+    </li>
+
+    <li class="btn btn-inverse" >
+      <%= link_to '<i class="icon icon-user"></i> <span class="text">Profile</span>'.html_safe, "" %>
+    </li>
+    <li class="btn btn-inverse">
+      <a title="" href="<%=  edit_user_registration_path %>">
+        <i class="icon icon-cog"></i>
+        <span class="text">Settings</span>
+      </a>
+    </li>
+    <li class="btn btn-inverse">
+      <%= link_to '<i class="icon icon-share-alt"></i><span class="text">Logout</span>'.html_safe, destroy_user_session_path, :method => :delete %>
+    </li>
+  </ul>
+</div>
+
+<%= render :partial => "layouts/admin_left_header"%>

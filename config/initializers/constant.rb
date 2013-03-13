@@ -1,0 +1,1 @@
+CURRENCIES = { "AUD" => "Australia (Australian Dollar)", "CAD" => "Canadian (CAD)", "EUR" => "European Union (EURO)", "GBP" => "Great Britain (Pound Sterling)", "MXN" => "Mexico (New Peso)", "$" => "United States (U.S. Dollar)", "SGD" => "Singapore (SGD)" }

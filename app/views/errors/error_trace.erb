@@ -1,0 +1,58 @@
+<%=render :partial => "shared/header_container"%>
+<div id="breadcrumb">
+	<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+	<%= link_to 'Projects', projects_path  %>
+	<%= link_to 'Exceptions', exception_path(@project) %>
+	<%= link_to 'Error Trace', "javascript: void(0);", :class => "current"  %>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tab1">Application</a></li>
+            <li><a data-toggle="tab" href="#tab2">Full</a></li>
+          </ul>
+        </div>
+        <div class="widget-content tab-content updates">
+          <div id="tab1" class="tab-pane active">
+          
+          <% @error_trace.application.each do |error_trace| %>          
+            <div class="new-update clearfix">
+              <i class="icon-hand-right"></i>
+              <div class="update-done">										
+                <a title="" href="javascript:void(0);"><strong> <%= error_trace["file"].split("/").last%></strong>: <%= error_trace["number"]%></a>
+                <span>
+                  File:<strong> "<%= error_trace["file"]%>"</strong><br/> 
+                  Method:<strong> <%= error_trace["method"]%></strong><br/>
+                  Line Number:<strong> <%= error_trace["number"]%></strong><br/
+                </span>
+              </div>
+              <div class="update-date"><span class="update-day"></span></div>
+				    </div>
+          <% end %>
+              
+          </div>
+          
+          <div id="tab2" class="tab-pane">
+
+          <% @error_trace.full.each do |error_trace| %>          
+            <div class="new-update clearfix">
+              <div class="update-done">										
+                <a title="" href="javascript:void(0);"><strong> <%= error_trace["file"].split("/").last%></strong>: <%= error_trace["number"]%></a>
+                <span>
+                  "<%= error_trace["file"]%>": <%= error_trace["method"]%>:  <%= error_trace["number"]%>
+                </span>
+              </div>
+              <div class="update-date"><span class="update-day"></span></div>
+				    </div>
+          <% end %>
+
+
+          </div>
+        </div>                            
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div id="box_login">
+  <div class="container">
+    <div class="span12 box_wrapper">
+      <div class="span12 box box_mandetory">
+        <div>
+          <div class="head">
+            <h4>Log in to your account</h4>
+          </div>
+          <div class="social" style="text-align: center;">
+            <%# ["facebook", "google", "linkedin"].each do |provider| %>
+              <%#=# link_to image_tag("#{provider}.png", :style => "margin:2px;"), "/auth/#{provider}" %>
+            <%# end %>
+            <!--<div class="division">
+              <hr class="left">
+              <span>or</span>
+              <hr class="right">
+            </div>
+            --->
+          </div>            
+          <div class="form">
+            <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <%= f.text_field :email, :placeholder => "Email" %>
+              <%= f.password_field :password, :placeholder => "Password" %>
+              <% if devise_mapping.rememberable? -%>
+                <div class="remember">
+                  <div class="left">
+                    <%= f.check_box :remember_me %> 
+                    <label for="remember_me">Remember me</label>
+                  </div>
+                  <div class="right">
+                    <%= link_to "Forgot password?", new_password_path(resource_name) %>
+                  </div>
+                </div>
+              <% end -%>
+              <%= f.submit "Sign in", :class=> "btn" %>
+            <% end %>
+          </div>                
+        </div>
+      </div>
+      <p class="already">Don't have an account? <%= link_to('Sign up', new_user_registration_path) %></p>        
+    </div>
+  </div>
+</div>

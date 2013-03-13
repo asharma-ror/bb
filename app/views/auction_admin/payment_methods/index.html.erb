@@ -1,0 +1,89 @@
+<% content_for :header do %>
+  <h1>Payment Methods</h1>
+<% end %>
+<div class="row flash_message_or_error">
+</div>
+<div class="container-fluid">
+  <div class="widget-box">
+    <div class="widget-title">
+      <span class="icon">
+        <i class="icon-refresh"></i>
+      </span> 
+      <h5>Payment Methods</h5>
+    </div>
+    <div class="widget-content nopadding updates">
+      <% unless @payment_methods.blank? %>
+        <% @payment_method_types.each do |payment_method_type| %>
+          <% if payment_method_type.name === "Paypal" %>
+            <div class="new-update clearfix">
+              <i class="icon-ok-sign"></i>
+              <div class="update-done">                   
+                <a href="#" title="">
+                  <strong><%= payment_method_type.name %></strong>
+                </a>
+                <span>
+                  <% payment_method = current_auction_admin.payment_methods.where(:payment_method_type_id => payment_method_type.id).first 
+                    payment_method = @new_payment_method if payment_method.blank?
+                  %>
+                  <% url = payment_method.new_record? ? auction_admin_payment_methods_path : auction_admin_payment_method_path(payment_method) %>
+
+                  <%= simple_form_for(payment_method, :remote => true, :url => url) do |f| %>
+                    <%= f.hidden_field :payment_method_type_id, :value => payment_method_type.id %>
+                    <div class="row">
+                      <div class="span2">
+                        Paypal Email
+                      </div>
+                      <div class="span4">
+                        <%= f.text_field :paypal_email %>
+                      </div>
+                    </div>
+                    <div class="row offset2">
+                      <%= f.submit (payment_method.new_record? ? "Add" : "Update"), :class =>"btn btn-primary" %>
+                    </div>
+                  <% end %>  
+                </span>
+              </div>          
+            </div>
+          <% else %>
+            <div class="new-update clearfix">
+              <i class="icon-ok-sign"></i>
+              <div class="update-done">                   
+                <a href="#" title="">
+                  <strong><%= payment_method_type.name %></strong>
+                </a>
+                <% payment_method = current_auction_admin.payment_methods.where(:payment_method_type_id => payment_method_type.id).first 
+                  payment_method = @new_payment_method if payment_method.blank?
+                %>
+                <span>
+                  <% url = payment_method.new_record? ? auction_admin_payment_methods_path : auction_admin_payment_method_path(payment_method) %>
+                  <%= simple_form_for(payment_method, :remote => true, :url => url) do |f| %>
+                    <%= f.hidden_field :payment_method_type_id, :value => payment_method_type.id %>
+                    <div class="row">
+                      <div class="span2">
+                        Login ID
+                      </div>
+                      <div class="span4">
+                        <%= f.text_field :gateway_login_id %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="span2">
+                        Transaction Key
+                      </div>
+                      <div class="span4">
+                        <%= f.text_field :gateway_transaction_key %>
+                      </div>
+                    </div>
+                    <div class="row offset2">
+                      <%= f.submit (payment_method.new_record? ? "Add" : "Update") , :class =>"btn btn-primary" %>
+                    </div>
+                  <% end %>
+                </span>
+              </div>          
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

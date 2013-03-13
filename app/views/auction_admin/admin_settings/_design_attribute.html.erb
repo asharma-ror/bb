@@ -1,0 +1,26 @@
+<div class="control-group">
+  <label class="control-label">Title</label>
+  <div class="controls">
+    <%= f.text_field :title %>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">Description</label>
+  <div class="controls">
+    <%= f.text_area :description, :rows=>"4" %>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">File upload (Logo) </label>
+  <div class="controls">
+   <%= image_tag(@admin_setting.logo_url(:logo)) if @admin_setting.logo? %>
+   <%= f.file_field :logo %>
+  </div>
+</div> 
+<div class="control-group">
+  <label class="control-label">File upload (Banner) </label>
+  <div class="controls">
+   <%= image_tag(@admin_setting.banner_url(:banner)) if @admin_setting.banner? %>
+   <%= f.file_field :banner %>
+  </div>
+</div>  
