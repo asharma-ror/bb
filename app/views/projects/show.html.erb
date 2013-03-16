@@ -13,7 +13,14 @@
           <span class="icon">
           <i class="icon-th"></i>
           </span>
-          <h5>Project Settings</h5>
+          <h5>Project Name: <%=@project.name%></h5>
+          <div class="buttons">
+            <span style="margin-right:5px;">
+              Private API Key:
+            </span>
+            
+            <span class="label" style="margin:0 0 0 0;"> <%= @project.key.to_s%></span>
+          </div>
         </div>
         <div class="widget-content">
           <div id="settings">
@@ -61,6 +68,8 @@
                       <pre>gem 'batbugger'</pre>
                       <p>Install the gem:</p>
                       <pre>bundle install</pre>
+                      <p>URL:</p>
+                      <pre><i class="icon-hand-right"></i> <%= link_to "BatBugger-Github: https://github.com/grepruby/batbugger", "https://github.com/grepruby/batbugger", :target=>"_blank"%></pre>
                     </div>
                   </div>
                 </div>
