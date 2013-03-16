@@ -4,7 +4,7 @@ class Error < ActiveRecord::Base
   belongs_to :project
   has_one :error_trace, :dependent => :destroy
 
-  attr_accessible :count, :desc, :status, :title, :url
+  attr_accessible :count, :desc, :status, :title, :url, :generated_at
 
   enumerize :status, :in => { active: 1, resolved: 2 }, scope: :having_status
 
