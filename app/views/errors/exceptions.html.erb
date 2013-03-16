@@ -1,8 +1,8 @@
 <%=render :partial => "shared/header_container"%>
 <div id="breadcrumb">
-	<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-	<%= link_to 'Projects', projects_path  %>
-	<%= link_to 'Exceptions', exception_path(@project), :class => "current"  %>
+    <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+    <%= link_to 'Projects', projects_path  %>
+    <%= link_to 'Exceptions', exception_path(@project), :class => "current"  %>
 </div>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -10,12 +10,18 @@
     </div>
     <div class="span2">
       <div class="btn-group">
-        <button class="btn">All Errors</button>
+        <% if params[:action] == "resolved" %>
+          <button class="btn">Resolved</button>
+        <% elsif params[:action] == "exceptions" %>
+          <button class="btn">Active</button>
+        <% else %>
+          <button class="btn">All Errors</button>
+        <% end %>
         <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><%= link_to 'All Errors', exception_path(@project)  %></li>
-          <li><%= link_to 'Resolved', exception_path(@project)  %></li>
-          <li><%= link_to 'Unresolved', exception_path(@project)  %></li>
+          <li><%= link_to 'All Errors', all_exception_path(@project)  %></li>
+          <li><%= link_to 'Active', exception_path(@project)  %></li>
+          <li><%= link_to 'Resolved', resolved_path(@project)  %></li>
         </ul>
       </div><!-- /btn-group -->
     </div>
@@ -28,6 +34,24 @@
             <i class="icon-th"></i>
           </span>
           <h5><%=@project.name %> / Unresolved errors</h5>
+          <div class="buttons hide" id="delete-comments">
+            <a href="#deleteError" data-toggle="modal" class="btn btn-danger"><i class="icon-remove"></i> Delete Permanently</a>
+          </div>
+
+          <div id="deleteError" class="modal hide">
+            <div class="modal-header">
+              <button data-dismiss="modal" class="close" type="button">×</button>
+              <h3>Alert modal</h3>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure, you want delete permanently?</p>
+            </div>
+            <div class="modal-footer">
+              <a data-dismiss="modal" class="btn btn-primary" href="<%=delete_permanently_path(@project)%>" id="delete_it">Confirm</a>
+              <a data-dismiss="modal" class="btn" href="#">Cancel</a>
+            </div>
+          </div>
+
         </div>
         <div class="widget-content nopadding">
           <table class="table table-bordered table-striped">
@@ -38,14 +62,14 @@
                 <th>Status</th>
                 <th>Times</th>
                 <th>Last Seen</th>
-                <th></th>
+                <th>Operation</th>
               </tr>
             </thead>
             <% @exceptions.each do |exception| %>
               <tbody>
                 <tr>
                   <td>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="exception[]" value="<%=exception.id%>"/>
                   </td>
                   <td width="60%" >
                     <error-message url="<%=error_trace_path(:project_id => exception.project.id, :error_id => exception.id)%>" style="cursor:pointer;">
@@ -57,22 +81,34 @@
                     </error-message>
                   </td>
                   <td>
-                    <%= exception.status %>
+                    <% if exception.status.active? %>
+                      <span class="label label-important">active</span>
+                    <% else %>
+                      <span class="label label-success">resolved</span>
+                    <% end %>
                   </td>
                   <td>
                     <i class="icon icon-signal"></i>
                     <span><%= exception.count %></span>
                   </td>
                   <td>
-                    <%= distance_of_time_in_words(Time.now, exception.updated_at) %> ago
+                    <%= distance_of_time_in_words(Time.now, exception.generated_at) %> ago
                   </td>
                   <td>
-                    <button class="btn btn-inverse"><i class="icon-star-empty icon-white"></i> Unresolved</button>
+                    <% if exception.status.active? %>
+                      <%= link_to update_resolved_path(@project, exception), :method => :put do %>
+                        <button class="btn btn-primary"><i class="icon-edit icon-white"></i> resolve</button>
+                      <% end %>
+                    <% elsif exception.status.resolved? %>
+                       <%= link_to update_unresolved_path(@project, exception), :method => :put do %>
+                        <button class="btn btn"><i class="icon-edit icon-white"></i> unresolve</button>
+                      <% end %>
+                    <% end %>
                   </td>
                 </tr>
               </tbody>
             <% end %>
-          </table>							
+          </table>
         </div>
       </div>
     </div>
@@ -83,5 +119,24 @@
     function(){
       window.location = $(this).attr("url");
     });
+  $('input[type=checkbox]').click(function() {
+    if($(this).is(':checked')) {
+      $('#hiddne').html($(this).val());
+    }
+    var boxes = $('input[name="exception[]"]:checked');
+    var total_checked_checkbox = $(boxes).size();
+    if(total_checked_checkbox > 0){
+      $("#delete-comments").show();
+    }else{
+      $("#delete-comments").hide();
+    }
+  });
+  $("#delete_it").click(function(){
+    var selected = new Array();
+    $('input:checkbox[name="exception[]"]:checked').each(function() {
+      selected.push($(this).val());
+    });
+    window.location = this.href + "?error_ids=" + selected;
+  });
 <% end %>
 

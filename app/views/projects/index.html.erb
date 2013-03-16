@@ -1,7 +1,7 @@
 <%=render :partial => "shared/header_container"%>
 <div id="breadcrumb">
-	<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-	<%= link_to 'Projects', projects_path, :class => "current"  %>
+    <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+    <%= link_to 'Projects', projects_path, :class => "current"  %>
 </div>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -31,6 +31,7 @@
                 <th>Open</th>
                 <th>Total</th>
                 <th></th>
+                <th></th>
                  <th></th>
                  <th></th>
               </tr>
@@ -38,10 +39,15 @@
             <% @projects.each do |project| %>
               <tbody>
                 <tr>
-                  <td width="60%"><%= project.name %></td>
-                  <td width="30%"><b><%= project.key %></b></td>
-                  <td width="30%"><b><%= project.project_errors.size %></b></td>
-                  <td width="30%"><b><%= project.project_errors.size %></b></td>
+                  <td width="40%"><%= project.name %></td>
+                  <td width="20%"><b><%= project.key %></b></td>
+                  <td width="10%"><b><%= project.project_errors.active.size %></b></td>
+                  <td width="10%"><b><%= project.project_errors.size %></b></td>
+                  <td width="10%">
+                    <%= link_to project_path(project) do %>
+                      <button class="btn btn-mini"><i class="icon-eye-open"></i> Settings</button>
+                    <% end %>
+                  </td>
                   <td>
                     <%= link_to exception_path(project) do %>
                       <button class="btn btn-danger btn-mini">Exceptions</button>
@@ -60,7 +66,7 @@
                 </tr>
               </tbody>
             <% end %>
-          </table>							
+          </table>
         </div>
       </div>
     </div>

@@ -60,6 +60,10 @@ module Cat
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.to_prepare do
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "auction" : "application" }
+    end
   end
 end
 

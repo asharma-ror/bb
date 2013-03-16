@@ -8,19 +8,21 @@ class ExceptionsController < ApplicationController
       if error_trace.blank?
         error = project.project_errors.create(:count=> 1,
           :desc => params["error"]["message"],
-          :status => :active, 
-          :title => params["error"]["class"] + " in " + params["controller"] + " # " + params["action"] +" in " + params["server"]["environment_name"], 
-          :url => params["request"]["url"]
+          :status => :active,
+          :title => params["error"]["class"] + " in " + params["controller"] + " # " + params["action"] +" in " + params["server"]["environment_name"],
+          :url => params["request"]["url"],
+          :generated_at => Time.now
         )
-        error.create_error_trace(:application => application_error, 
+        error.create_error_trace(:application => application_error,
           :full => params["error"]["backtrace"])
       else
         error = error_trace.error
         error.count = error.count + 1
+        error.generated_at = Time.now
         error.save
       end
     end
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
-  
+
 end

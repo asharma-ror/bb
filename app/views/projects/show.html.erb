@@ -1,20 +1,265 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>User:</b>
-  <%= @project.user.email %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
-
-<p>
-  <b>Key:</b>
-  <%= @project.key %>
-</p>
+<%=render :partial => "shared/header_container"%>
+<div id="breadcrumb">
+    <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+    <%= link_to 'Projects', projects_path, :class => "current"  %>
+</div>
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon">
+          <i class="icon-th"></i>
+          </span>
+          <h5>Project Settings</h5>
+        </div>
+        <div class="widget-content">
+          <div id="settings">
+            <div class="tabbable tabs-left">
+              <ul class="nav nav-tabs">
+                <li class="active">
+                  <a data-toggle="tab" href="#tab-install">Setup</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-notifications">Notifications</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-collaborators">Collaborators</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-edit">Edit</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-campfire">Campfire</a>
+                </li>
+                 <li class="">
+                  <a data-toggle="tab" href="#tab-pivotal">Pivotal Tracker</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-flowdock">Flowdock</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-hipchat">HipChat</a>
+                </li>
+                <li class="">
+                  <a data-toggle="tab" href="#tab-delete">Delete</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab-install">
+                  <ul class="nav nav-pills">
+                    <li class="active">
+                      <a data-toggle="pill" href="#tab-install-rails3">Rails 3</a>
+                    </li>
+                   </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab-install-rails3">
+                      <h2>Rails 3 Installation</h2>
+                      <p>Add the Honeybadger gem to your gemfile:</p>
+                      <pre>gem 'batbugger'</pre>
+                      <p>Install the gem:</p>
+                      <pre>bundle install</pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane" id="tab-notifications">
+                  <h2>Notification Settings</h2>
+                  <form accept-charset="UTF-8" action="/projects/1427/watchers/3056" class="simple_form form-horizontal edit-watcher" data-remote="true" data-success="Your notification preferences have been updated." id="edit_watcher_3056" method="post" novalidate="novalidate">
+                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
+                    <div class="control-group email optional">
+                      <label class="email optional control-label" for="watcher_notification_email">Email address</label>
+                      <div class="controls"><input class="string email optional" id="watcher_notification_email" name="watcher[notification_email]" size="50" type="email" value="asharma.rubyonrails@gmail.com"></div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="watcher_email"><input name="watcher[email]" type="hidden" value="0"><input checked="checked" id="watcher_email" name="watcher[email]" type="checkbox" value="1">
+                        Send notifications via email
+                        </label>
+                      </div>
+                    </div>
+                    <div class="control-group string optional">
+                      <label class="string optional control-label" for="watcher_notification_cell">Cell phone</label>
+                      <div class="controls"><input class="string optional" id="watcher_notification_cell" name="watcher[notification_cell]" size="50" type="text"></div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="watcher_sms"><input name="watcher[sms]" type="hidden" value="0"><input id="watcher_sms" name="watcher[sms]" type="checkbox" value="1">
+                        Send notifications via SMS
+                        </label>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="watcher_daily_digest"><input name="watcher[daily_digest]" type="hidden" value="0"><input id="watcher_daily_digest" name="watcher[daily_digest]" type="checkbox" value="1">
+                        Include in daily digest emails
+                        </label>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="watcher_weekly_digest"><input name="watcher[weekly_digest]" type="hidden" value="0"><input checked="checked" id="watcher_weekly_digest" name="watcher[weekly_digest]" type="checkbox" value="1">
+                        Include in weekly digest emails
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <input class="btn btn-primary" type="submit" value="Save">
+                    </div>
+                  </form>
+                </div>
+                <div class="tab-pane" id="tab-collaborators">
+                  <h2>Collaborators</h2>
+                  <ul id="invitations"></ul>
+                  <p id="no_collaborators">
+                    You haven't invited anyone to this project yet
+                  </p>
+                  <h3>Invite a new collaborator</h3>
+                  <p></p>
+                  <form accept-charset="UTF-8" action="/projects/1427/invitations" class="simple_form form-horizontal" data-remote="true" id="new_invitation" method="post" novalidate="novalidate">
+                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
+                    <div class="control-group">
+                      <label class="required control-label">Email</label>
+                      <div class="controls">
+                        <input id="invitation_email" name="invitation[email]" placeholder="Email" size="30" type="email">
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label class="required control-label">Project Permissions</label>
+                      <div class="controls">
+                        <select id="invitation_admin" name="invitation[admin]">
+                          <option value="false" selected="selected">Normal User</option>
+                          <option value="true">Admin User</option>
+                        </select>
+                        <span class="help-block">
+                        Admin users can do anything to a project you can do aside from delete it
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <input class="btn btn-primary btn" name="commit" type="submit" value="Create Invitation">
+                    </div>
+                  </form>
+                  <p></p>
+                </div>
+                <div class="tab-pane" id="tab-edit">
+                  <h2>Project settings</h2>
+                  <script type="text/javascript">
+                    //<![CDATA[
+                    window.ghRepos = []
+                    //]]>
+                  </script>
+                  <form accept-charset="UTF-8" action="/projects/1427" class="simple_form form-horizontal edit-project" data-remote="true" data-success="Project was successfully updated." id="edit_project_1427" method="post" novalidate="novalidate">
+                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
+                    <div class="control-group string required">
+                      <label class="string required control-label" for="project_name"><abbr title="required">*</abbr> Name</label>
+                      <div class="controls"><input class="string required" id="project_name" name="project[name]" size="50" type="text" value="testit"></div>
+                    </div>
+                    <div class="control-group string optional">
+                      <label class="string optional control-label" for="project_github_project">Github Repository</label>
+                      <div class="controls"><input class="string optional" id="project_github_project" name="project[github_project]" placeholder="user_name/repo_name" size="50" type="text"></div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="project_resolve_errors_on_deploy"><input name="project[resolve_errors_on_deploy]" type="hidden" value="0"><input checked="checked" id="project_resolve_errors_on_deploy" name="project[resolve_errors_on_deploy]" type="checkbox" value="1">
+                        Resolve errors on deploy
+                        </label>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="project_disable_public_links"><input name="project[disable_public_links]" type="hidden" value="0"><input id="project_disable_public_links" name="project[disable_public_links]" type="checkbox" value="1">
+                        Disable public links
+                        <span class="help-block">
+                        Checking this box will disable the obfuscated URLs used for sharing your faults with non-logged-in users.
+                        </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <input class="btn btn-primary" name="commit" type="submit" value="Update Project">
+                    </div>
+                  </form>
+                </div>
+                <div class="tab-pane" id="tab-campfire">
+                  <h2>Campfire settings</h2>
+                  <form accept-charset="UTF-8" action="/projects/1427/watches" class="simple_form form-horizontal edit-watch" data-remote="true" data-success="Your hook has been updated." id="12153500_new_watch" method="post" novalidate="novalidate">
+                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
+                    <input id="12153500_watch_klass" name="watch[klass]" type="hidden" value="Campfire">
+                    <div class="control-group required string">
+                      <label class="control-label required string">
+                      <abbr title="required">*</abbr>
+                      Subdomain
+                      </label>
+                      <div class="controls">
+                        <input class="string required" name="watch[params][subdomain]" type="text">
+                      </div>
+                    </div>
+                    <div class="control-group required string">
+                      <label class="control-label required string">
+                      <abbr title="required">*</abbr>
+                      Room
+                      </label>
+                      <div class="controls">
+                        <input class="string required" name="watch[params][room]" type="text">
+                      </div>
+                    </div>
+                    <div class="control-group required string">
+                      <label class="control-label required string">
+                      <abbr title="required">*</abbr>
+                      Token
+                      </label>
+                      <div class="controls">
+                        <input class="string required" name="watch[params][token]" type="text">
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="controls">
+                        <label class="checkbox" for="12153500_watch_active"><input name="watch[active]" type="hidden" value="0"><input checked="checked" id="12153500_watch_active" name="watch[active]" type="checkbox" value="1">
+                        Active
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <input class="btn btn-primary" type="submit" value="Save">
+                      <button class="btn test">Test</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="tab-pane" id="tab-pivotal">
+                  <h2>Pivotal settings</h2>
+                  <p>comming soon...</p>
+                </div>
+                <div class="tab-pane" id="tab-flowdock">
+                  <h2>Flowdock settings</h2>
+                  <p>comming soon...</p>
+                </div>
+                <div class="tab-pane" id="tab-hipchat">
+                  <h2>HipChat settings</h2>
+                  <p>comming soon...</p>
+                </div>
+                <div class="tab-pane" id="tab-delete">
+                  <h2>Delete project</h2>
+                  <p style="text-align: center;">
+                    <strong>WARNING:</strong>
+                    Deleting this project will cause all of its associated data to be deleted immediately.
+                  </p>
+                  <p style="text-align: center; color: #DA4E49;">
+                    <strong>This action can not be undone.</strong>
+                  </p>
+                  <p style="text-align: center;">
+                    <a href="#" class="btn btn-large" data-show="#delete-project-button">I understand — Delete this project and its data</a>
+                  </p>
+                  <p class="hidden" id="delete-project-button" style="text-align: center;">
+                    <a href="/projects/1427" class="btn btn-danger btn-large" data-confirm="Last chance... The Badger does not lie." data-method="delete" rel="nofollow">For realz?</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

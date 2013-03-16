@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  
+
   layout "auction"
-  
+
   # GET /projects
   # GET /projects.json
   def index
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    redirect_to projects_path
+    @project = Project.find(params[:id])
   end
 
   # GET /projects/new
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user = current_user
-    
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
