@@ -1,0 +1,6 @@
+$("#invitation_email").val("");
+<% if @notice.blank? %>
+  $("#invitation_response").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4> Invitation has been sent Successfully!</div>");
+<% else %>
+  $("#invitation_response").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
+<% end %>

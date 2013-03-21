@@ -7,7 +7,7 @@
 </div>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span8">
+    <div class="span6">
     </div>
     <div class="span2">
       <%= link_to delete_permanently_path(@project, :error_ids => @error_trace.error.id) do  %>
@@ -17,13 +17,18 @@
     <div class="span2">
         <% if @error_trace.error.status.active? %>
            <%= link_to update_resolved_path(@project, @error_trace.error), :method => :put do %>
-           <button class="btn btn-primary"><i class="icon-edit icon-white"></i> resolve</button>
+           <button class="btn btn-primary"><i class="icon-edit icon-white"></i> Close it!</button>
            <% end %>
         <% elsif @error_trace.error.status.resolved? %>
            <%= link_to update_unresolved_path(@project, @error_trace.error), :method => :put do %>
-             <button class="btn btn"><i class="icon-edit icon-white"></i> unresolve</button>
+             <button class="btn btn"><i class="icon-edit icon-white"></i> Re-open</button>
             <% end %>
         <% end %>
+    </div>
+    <div class="span2">
+      <%= link_to project_path(@project) do %>
+        <button class="btn"><i class="icon-wrench"></i> Project Settings</button>
+      <% end %>
     </div>
   </div>
   <div class="row-fluid">

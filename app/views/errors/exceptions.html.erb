@@ -6,7 +6,12 @@
 </div>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span10">
+    <div class="span8">
+    </div>
+    <div class="span2">
+      <%= link_to project_path(@project) do %>
+        <button class="btn"><i class="icon-wrench"></i> Project Settings</button>
+      <% end %>
     </div>
     <div class="span2">
       <div class="btn-group">
@@ -97,11 +102,11 @@
                   <td>
                     <% if exception.status.active? %>
                       <%= link_to update_resolved_path(@project, exception), :method => :put do %>
-                        <button class="btn btn-primary"><i class="icon-edit icon-white"></i> resolve</button>
+                        <button class="btn btn-primary"><i class="icon-edit icon-white"></i> Close it!</button>
                       <% end %>
                     <% elsif exception.status.resolved? %>
                        <%= link_to update_unresolved_path(@project, exception), :method => :put do %>
-                        <button class="btn btn"><i class="icon-edit icon-white"></i> unresolve</button>
+                        <button class="btn btn"><i class="icon-edit icon-white"></i> Re-open</button>
                       <% end %>
                     <% end %>
                   </td>

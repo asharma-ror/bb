@@ -18,6 +18,7 @@ gem "friendly_id"
 gem 'carrierwave'
 gem 'rmagick'
 gem 'enumerize'
+gem 'devise_invitable'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

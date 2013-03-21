@@ -63,6 +63,7 @@ module Cat
 
     config.to_prepare do
       Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "auction" : "application" }
+      Devise::InvitationsController.layout proc{ |controller| user_signed_in? ? "auction" : "application" }
     end
   end
 end

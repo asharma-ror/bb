@@ -20,7 +20,13 @@ Cat::Application.routes.draw do
 
   match 'dashboard' => 'home#dashboard', :as => :dashboard
 
-  resources :projects
+  resources :projects do
+    member do
+      put 'accept'
+      delete 'decline'
+      post 'invitation'
+    end
+  end
 
   root :to => 'home#index'
 end

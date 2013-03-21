@@ -3,11 +3,14 @@ class Project < ActiveRecord::Base
   has_many :project_errors, :dependent => :destroy, :class_name => "Error", :order => "generated_at Desc"
   has_many :error_trace, :through => :project_errors
 
-  attr_accessible :key, :name, :user_id
+  has_many :user_projects, :dependent => :destroy
+  has_many :users, :dependent => :destroy, :through => :user_projects
+
+  attr_accessible :key, :name
 
   before_create :create_unique_identifier
 
-  validates :name, :uniqueness => {:scope => :user_id}, :presence => true
+  validates :name, :presence => true
   validates :key, :uniqueness => true
 
 

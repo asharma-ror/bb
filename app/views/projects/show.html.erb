@@ -18,7 +18,7 @@
             <span style="margin-right:5px;">
               Private API Key:
             </span>
-            
+
             <span class="label" style="margin:0 0 0 0;"> <%= @project.key.to_s%></span>
           </div>
         </div>
@@ -120,21 +120,37 @@
                 </div>
                 <div class="tab-pane" id="tab-collaborators">
                   <h2>Collaborators</h2>
-                  <ul id="invitations"></ul>
+                  <% if current_user.invitations.present? %>
+                    <ul id="invitations">
+                      <% @project.user_projects.each do |user_project|%>
+                        <li>
+                           <%=user_project.user.email%>
+                           <% if user_project.status %>
+                             <span class="label label-success"> active </span>
+                           <% else %>
+                             <span class="label label-warning"> pending </span>
+                           <% end %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  <% else %>
                   <p id="no_collaborators">
                     You haven't invited anyone to this project yet
                   </p>
+                  <% end %>
+                  <p id="invitation_response">
+                  </p>
                   <h3>Invite a new collaborator</h3>
                   <p></p>
-                  <form accept-charset="UTF-8" action="/projects/1427/invitations" class="simple_form form-horizontal" data-remote="true" id="new_invitation" method="post" novalidate="novalidate">
-                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
+                  <form accept-charset="UTF-8" action="<%= invitation_project_path(@project)%>" class="simple_form form-horizontal" data-remote="true" id="new_invitation" method="post" novalidate="novalidate">
+                    <div style="margin:0;padding:0;display:inline"></div>
                     <div class="control-group">
                       <label class="required control-label">Email</label>
                       <div class="controls">
                         <input id="invitation_email" name="invitation[email]" placeholder="Email" size="30" type="email">
                       </div>
                     </div>
-                    <div class="control-group">
+                    <!--<div class="control-group">
                       <label class="required control-label">Project Permissions</label>
                       <div class="controls">
                         <select id="invitation_admin" name="invitation[admin]">
@@ -145,7 +161,7 @@
                         Admin users can do anything to a project you can do aside from delete it
                         </span>
                       </div>
-                    </div>
+                    </div>-->
                     <div class="form-actions">
                       <input class="btn btn-primary btn" name="commit" type="submit" value="Create Invitation">
                     </div>

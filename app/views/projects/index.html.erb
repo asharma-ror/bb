@@ -13,6 +13,9 @@
       <% end %>
     </div>
   </div>
+  <% if @project_invitations.present? %>
+    <%= render :partial => "project_invitation"%>
+  <% end %>
   <div class="row-fluid">
     <div class="span12">
       <div class="widget-box">
@@ -45,7 +48,7 @@
                   <td width="10%"><b><%= project.project_errors.size %></b></td>
                   <td width="10%">
                     <%= link_to project_path(project) do %>
-                      <button class="btn btn-mini"><i class="icon-eye-open"></i> Settings</button>
+                      <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
                     <% end %>
                   </td>
                   <td>

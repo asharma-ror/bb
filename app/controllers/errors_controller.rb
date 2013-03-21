@@ -27,7 +27,7 @@ class ErrorsController < ApplicationController
     error = project.project_errors.active.find(params[:error_id])
     error.status = :resolved
     error.save
-    redirect_to exception_path
+    redirect_to exception_path, :notice => "Exception was successfully resolved!"
   end
 
   def update_unresolved
@@ -35,7 +35,7 @@ class ErrorsController < ApplicationController
     error = project.project_errors.resolved.find(params[:error_id])
     error.status = :active
     error.save
-    redirect_to resolved_path
+    redirect_to resolved_path, :notice => "Exception was re-opened!"
   end
 
   def error_trace
