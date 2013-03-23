@@ -170,87 +170,11 @@
                 </div>
                 <div class="tab-pane" id="tab-edit">
                   <h2>Project settings</h2>
-                  <script type="text/javascript">
-                    //<![CDATA[
-                    window.ghRepos = []
-                    //]]>
-                  </script>
-                  <form accept-charset="UTF-8" action="/projects/1427" class="simple_form form-horizontal edit-project" data-remote="true" data-success="Project was successfully updated." id="edit_project_1427" method="post" novalidate="novalidate">
-                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
-                    <div class="control-group string required">
-                      <label class="string required control-label" for="project_name"><abbr title="required">*</abbr> Name</label>
-                      <div class="controls"><input class="string required" id="project_name" name="project[name]" size="50" type="text" value="testit"></div>
-                    </div>
-                    <div class="control-group string optional">
-                      <label class="string optional control-label" for="project_github_project">Github Repository</label>
-                      <div class="controls"><input class="string optional" id="project_github_project" name="project[github_project]" placeholder="user_name/repo_name" size="50" type="text"></div>
-                    </div>
-                    <div class="control-group">
-                      <div class="controls">
-                        <label class="checkbox" for="project_resolve_errors_on_deploy"><input name="project[resolve_errors_on_deploy]" type="hidden" value="0"><input checked="checked" id="project_resolve_errors_on_deploy" name="project[resolve_errors_on_deploy]" type="checkbox" value="1">
-                        Resolve errors on deploy
-                        </label>
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <div class="controls">
-                        <label class="checkbox" for="project_disable_public_links"><input name="project[disable_public_links]" type="hidden" value="0"><input id="project_disable_public_links" name="project[disable_public_links]" type="checkbox" value="1">
-                        Disable public links
-                        <span class="help-block">
-                        Checking this box will disable the obfuscated URLs used for sharing your faults with non-logged-in users.
-                        </span>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="form-actions">
-                      <input class="btn btn-primary" name="commit" type="submit" value="Update Project">
-                    </div>
-                  </form>
+                  <p>comming soon...</p>
                 </div>
                 <div class="tab-pane" id="tab-campfire">
                   <h2>Campfire settings</h2>
-                  <form accept-charset="UTF-8" action="/projects/1427/watches" class="simple_form form-horizontal edit-watch" data-remote="true" data-success="Your hook has been updated." id="12153500_new_watch" method="post" novalidate="novalidate">
-                    <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="RDTlqC/wiGpCfLZrPJLvAPY5OZ93p7AO5Iy3WaX+wRA="></div>
-                    <input id="12153500_watch_klass" name="watch[klass]" type="hidden" value="Campfire">
-                    <div class="control-group required string">
-                      <label class="control-label required string">
-                      <abbr title="required">*</abbr>
-                      Subdomain
-                      </label>
-                      <div class="controls">
-                        <input class="string required" name="watch[params][subdomain]" type="text">
-                      </div>
-                    </div>
-                    <div class="control-group required string">
-                      <label class="control-label required string">
-                      <abbr title="required">*</abbr>
-                      Room
-                      </label>
-                      <div class="controls">
-                        <input class="string required" name="watch[params][room]" type="text">
-                      </div>
-                    </div>
-                    <div class="control-group required string">
-                      <label class="control-label required string">
-                      <abbr title="required">*</abbr>
-                      Token
-                      </label>
-                      <div class="controls">
-                        <input class="string required" name="watch[params][token]" type="text">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <div class="controls">
-                        <label class="checkbox" for="12153500_watch_active"><input name="watch[active]" type="hidden" value="0"><input checked="checked" id="12153500_watch_active" name="watch[active]" type="checkbox" value="1">
-                        Active
-                        </label>
-                      </div>
-                    </div>
-                    <div class="form-actions">
-                      <input class="btn btn-primary" type="submit" value="Save">
-                      <button class="btn test">Test</button>
-                    </div>
-                  </form>
+                  <p>comming soon...</p>
                 </div>
                 <div class="tab-pane" id="tab-pivotal">
                   <h2>Pivotal settings</h2>
@@ -274,7 +198,9 @@
                     <strong>This action can not be undone.</strong>
                   </p>
                   <p style="text-align: center;">
-                    <a href="#" class="btn btn-large" data-show="#delete-project-button">I understand — Delete this project and its data</a>
+                    <%= link_to @project, confirm: 'Are you sure?', method: :delete , class: "btn btn-large" do %>
+                      I understand — Delete this project and its data
+                    <% end %>
                   </p>
                   <p class="hidden" id="delete-project-button" style="text-align: center;">
                     <a href="/projects/1427" class="btn btn-danger btn-large" data-confirm="Last chance... The Badger does not lie." data-method="delete" rel="nofollow">For realz?</a>

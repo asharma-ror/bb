@@ -29,20 +29,28 @@
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
+                <th></th>
                 <th>Project name</th>
                 <th>Key</th>
                 <th>Open</th>
                 <th>Total</th>
                 <th></th>
                 <th></th>
-                 <th></th>
-                 <th></th>
               </tr>
             </thead>
-            <% @projects.each do |project| %>
+            <% @projects.each_with_index do |project, index| %>
               <tbody>
                 <tr>
-                  <td width="40%"><%= project.name %></td>
+                  <td>
+                     <%= index + 1%>
+                  </td>
+                  <td width="40%">
+                    <%= link_to exception_path(project) do %>
+                      <span data-original-title="see exceptions" class="tip-top">
+                      <%= project.name %>
+                      </span>
+                    <%end %>
+                  </td>
                   <td width="20%"><b><%= project.key %></b></td>
                   <td width="10%"><b><%= project.project_errors.active.size %></b></td>
                   <td width="10%"><b><%= project.project_errors.size %></b></td>
@@ -54,16 +62,6 @@
                   <td>
                     <%= link_to exception_path(project) do %>
                       <button class="btn btn-danger btn-mini">Exceptions</button>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to edit_project_path(project) do %>
-                      <button class="btn btn-mini btn-primary">Edit</button>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to project, confirm: 'Are you sure?', method: :delete  do %>
-                      <button class="btn btn-danger btn-mini">Destroy</button>
                     <% end %>
                   </td>
                 </tr>
