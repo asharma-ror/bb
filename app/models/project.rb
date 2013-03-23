@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :error_trace, :through => :project_errors
 
   has_many :user_projects, :dependent => :destroy
+
   has_many :users, :dependent => :destroy, :through => :user_projects
 
   attr_accessible :key, :name

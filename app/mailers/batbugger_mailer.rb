@@ -6,11 +6,9 @@ class BatbuggerMailer < ActionMailer::Base
   #
   #   en.batbugger_mailer.exception.subject
   #
-  def exception(project,error)
+  def exception(user_project, error)
     @error = error
-    @project = project
-    project.user_projects.each do |user_project|
-      mail to: user_project.user.email, subject: "Exception Notification : #{project.name}"
-    end
+    @project = user_project.project
+    mail to: user_project.user.email, subject: "Exception Notification : #{@project.name}"
   end
 end

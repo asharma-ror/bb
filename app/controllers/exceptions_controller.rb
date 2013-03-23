@@ -29,7 +29,9 @@ class ExceptionsController < ApplicationController
         error.generated_at = Time.now
         error.save
       end
-      BatbuggerMailer.exception(project,error).deliver
+      project.user_projects.each do |user_project|
+        BatbuggerMailer.exception(user_project,error).deliver  if user_project.status
+      end
     end
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end

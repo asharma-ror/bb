@@ -20,7 +20,6 @@
       <table width="650" id="main" border="0" cellpadding="0" cellspacing="20">
         <tr>
           <td id="header" colspan="2">
-            <a href="http://grepruby.com/"><img src="#" width="423" height="56" alt="Exception"></a>
           </td>
         </tr>
         <tr>
@@ -28,18 +27,15 @@
         </tr>
         <tr class="episode">
           <td>
-            <a href="http://grepruby.com/"><img src="#" width="423" height="56" alt="Exception"></a>
           </td>
           <td valign="top">
             <h2>New Exception Occured</h2>
-            <p>Please through the <a>http://batbugger.herokuapp.com/</a> to find error trace</p>
+            <p>Please through the <a href="http://batbugger.herokuapp.com/">http://batbugger.herokuapp.com/</a> to find error trace</p>
             <p>Short error below :</p>
             <p><%= @error.title%><p>
-          	<p><%= truncate(@error.desc, :length => 200, :omission => '...')%><p>
-            <p>
-              <a href="#">Click Here</a>
-              <span class="duration"></span>
-            </p>
+            <p><%= truncate(@error.desc, :length => 200, :omission => '...')%><p>
+            <p>Go to error:<p>
+            <p><%= link_to error_trace_url(:project_id => @project.id, :error_id => @error.id), error_trace_url(:project_id => @project.id, :error_id => @error.id)%><p>
           </td>
         </tr>
         <tr>
@@ -47,8 +43,7 @@
         </tr>
         <tr>
           <td id="footer" colspan="2" align="center">
-            <p><a href="#">Unsubscribe</a> if you do not wish to receive these emails in the future.</p>
-            <p></p>
+
           </td>
         </tr>
       </table>
