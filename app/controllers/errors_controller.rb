@@ -1,6 +1,7 @@
 class ErrorsController < ApplicationController
 
   before_filter :store_location, :only => [:exceptions, :resolved, :all_exceptions]
+  before_filter :authenticate_user!
 
   layout "auction"
 
