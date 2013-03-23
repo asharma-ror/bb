@@ -43,10 +43,12 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'debugger', :require => "debugger"
   gem 'faker'
+  gem 'sqlite3'
 end
 
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 2.2.1.1'
+gem 'roadie'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
