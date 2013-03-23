@@ -120,7 +120,6 @@
                 </div>
                 <div class="tab-pane" id="tab-collaborators">
                   <h2>Collaborators</h2>
-                  <% if current_user.invitations.present? %>
                     <ul id="invitations">
                       <% @project.user_projects.each do |user_project|%>
                         <li>
@@ -134,10 +133,6 @@
                       <% end %>
                     </ul>
                   <% else %>
-                  <p id="no_collaborators">
-                    You haven't invited anyone to this project yet
-                  </p>
-                  <% end %>
                   <p id="invitation_response">
                   </p>
                   <h3>Invite a new collaborator</h3>
