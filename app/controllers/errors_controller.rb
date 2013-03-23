@@ -41,6 +41,7 @@ class ErrorsController < ApplicationController
   def error_trace
     @project = current_user.projects.find(params[:project_id])
     @error_trace = @project.project_errors.where(:id=>params[:error_id]).first.error_trace
+    @location = Geokit::Geocoders::IpGeocoder.geocode(@error_trace.remote_ip)
   end
 
   def delete_permanently

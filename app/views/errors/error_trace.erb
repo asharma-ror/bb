@@ -36,13 +36,19 @@
       <div class="widget-box">
         <div class="widget-title">
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#tab1">Application</a></li>
+            <li class="active"><a data-toggle="tab" href="#source">Summary</a></li>
+            <li><a data-toggle="tab" href="#tab1">Application</a></li>
             <li><a data-toggle="tab" href="#tab2">Full</a></li>
+            <li><a data-toggle="tab" href="#params">Params</a></li>
+            <li><a data-toggle="tab" href="#environment">Environment</a></li>
+            <li><a data-toggle="tab" href="#context">Context</a></li>
           </ul>
         </div>
         <div class="widget-content tab-content updates">
-          <div id="tab1" class="tab-pane active">
-
+          <div id="tab1" class="tab-pane">
+          <% if @error_trace.application.blank? %>
+            <%= debug([]) %>
+          <% end %>
           <% @error_trace.application.each do |error_trace| %>
             <div class="new-update clearfix">
               <i class="icon-hand-right"></i>
@@ -76,6 +82,33 @@
 
 
           </div>
+
+          <div id="source" class="tab-pane active">
+            <h5>URL:</h5>
+            <%= debug(@error_trace.url) %>
+            <h5>Browser:</h5>
+            <%= debug(@error_trace.browser) %>
+            <% unless @location.full_address.blank? %>
+              <h5>Location:</h5>
+              <%= debug(@location.full_address.to_s + ", Lat:" + @location.lat.to_s + ", Lan:" + @location.lng.to_s) %>
+            <% end %>
+            <h5>View Source:</h5>
+            <%= debug(@error_trace.source_code) %>
+          </div>
+
+          <div id="params" class="tab-pane">
+            <%= debug(@error_trace.params) %>
+          </div>
+
+          <div id="environment" class="tab-pane">
+            <%= debug(@error_trace.environment) %>
+          </div>
+
+          <div id="context" class="tab-pane">
+            <%= debug(@error_trace.context) %>
+          </div>
+
+
         </div>
       </div>
     </div>
