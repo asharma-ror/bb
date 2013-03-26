@@ -25,6 +25,8 @@ Cat::Application.routes.draw do
       put 'accept'
       delete 'decline'
       post 'invitation'
+      post 'pivotal_authenticate'
+      post 'pivotal'
     end
   end
 

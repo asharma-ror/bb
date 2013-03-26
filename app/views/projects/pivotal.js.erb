@@ -1,0 +1,6 @@
+<% if @notice.blank? %>
+	$("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4>Successfully added project to mention exceptions.</div><div>Registered Project : <%= @project.pivotal_project_name %></div>")
+	$("#pivotal").hide();
+<% else %>
+  $("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
+<% end %>

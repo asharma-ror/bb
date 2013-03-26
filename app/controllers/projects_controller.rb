@@ -19,6 +19,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = current_user.active_projects.find(params[:id])
+    if @project.pivotal_token
+      PivotalTracker::Client.token = @project.pivotal_token
+      @pivotal_projects = PivotalTracker::Project.all
+    end
   end
 
   # GET /projects/new
@@ -121,6 +125,28 @@ class ProjectsController < ApplicationController
     userproject = current_user.user_projects.where(:project_id => params[:id]).first
     userproject.destroy
     redirect_to projects_path, :notice => "NOTICE: You have declined invitation!"
+  end
+
+  def pivotal_authenticate
+    @project = current_user.active_projects.find(params[:id])
+    pivotal_token = PivotalTracker::Client.token(params[:authenticate][:email], params[:authenticate][:password]) rescue nil
+    if pivotal_token.blank?
+      @notice = "Invalid authentication details"
+    else
+      @project.update_attributes(:pivotal_token => pivotal_token)
+      @pivotal_projects = PivotalTracker::Project.all
+    end
+  end
+
+  def pivotal
+    if params[:pivotal_project_id]
+      @project = current_user.active_projects.find(params[:id])
+      project_name = PivotalTracker::Project.find(params[:pivotal_project_id].to_i)
+      @project.update_attributes(:pivotal_project_id => params[:pivotal_project_id], :pivotal_project_name => project_name.name)
+    else
+      @notice = "Something went wrong please try again later."
+    end
+
   end
 
 end

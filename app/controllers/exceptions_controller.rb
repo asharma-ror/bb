@@ -14,7 +14,7 @@ class ExceptionsController < ApplicationController
           :url => params["request"]["url"],
           :generated_at => Time.now
         )
-        error.create_error_trace(:application => application_error,
+        error_trace = error.create_error_trace(:application => application_error,
           :full => params["error"]["backtrace"],
           :source_code => params["error"]["source"],
           :url => params["request"]["url"],
@@ -23,6 +23,13 @@ class ExceptionsController < ApplicationController
           :environment => params["request"]["cgi_data"],
           :browser => params["request"]["cgi_data"]["HTTP_USER_AGENT"],
           :remote_ip => params["request"]["cgi_data"]["REMOTE_ADDR"])
+        if project.pivotal_token
+          PivotalTracker::Client.token = project.pivotal_token
+          name = "New Exception : " + project.name + " : " + error.title
+          desc = "--------------------- \n URL: \n --------------------- \n" + error_trace.url.to_s + "\n --------------------- \n Browser: \n --------------------- \n" + error_trace.browser.to_s + "\n --------------------- \n View Source: \n --------------------- \n" + error_trace.source_code.to_s + "\n --------------------- \n Parameters \n --------------------- \n" + error_trace.params.to_s + "\n --------------------- \n Enviornment \n --------------------- \n" + error_trace.environment.to_s + "\n --------------------- \n Context \n --------------------- \n" + error_trace.context.to_s
+          @pivotal_project = PivotalTracker::Project.find(project.pivotal_project_id)
+          @pivotal_project.stories.create(:name => name, :story_type => 'bug', :description => desc)
+        end
       else
         error = error_trace.error
         error.count = error.count + 1

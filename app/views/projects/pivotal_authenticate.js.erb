@@ -1,0 +1,12 @@
+<% if @notice.blank? %>
+	$("#modal_anchor").hide();
+	new_html = "<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4> Authentication successful. Please select project from list below.</div><form accept-charset='UTF-8' action='<%= pivotal_project_path(@project)%>' class='simple_form form-horizontal' data-remote='true' id='pivotal' method='post' novalidate='novalidate'><div><select id='pivotal_project' name='pivotal_project_id'>"
+	<% @pivotal_projects.each do |project| %>
+    new_html += "<option value='<%= project.id %>'><%= project.name %></option>"
+  <% end %>
+  new_html += "</select><input class='btn btn-primary btn' name='commit' type='submit' value='Save' style='margin-left:20px;'></div></form>"
+  $("#pivotal_projects").html(new_html);
+<% else %>
+  $("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
+<% end %>
+$("#myModal").modal('hide');

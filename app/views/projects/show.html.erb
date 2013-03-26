@@ -173,7 +173,50 @@
                 </div>
                 <div class="tab-pane" id="tab-pivotal">
                   <h2>Pivotal settings</h2>
-                  <p>comming soon...</p>
+                  <% if @project.pivotal_token.blank? %>
+                    <a id="modal_anchor" href="#myModal" role="button" class="btn" data-toggle="modal">Authenticate</a>
+                  <% end %>
+                  <% if @project.pivotal_project_id.blank? %>
+                    <form accept-charset="UTF-8" action="<%= pivotal_project_path(@project)%>" class="simple_form form-horizontal" data-remote="true" id="pivotal" method="post" novalidate="novalidate">
+                      <div>
+                        <select id="pivotal_project" name="pivotal_project_id">
+                          <% @pivotal_projects.each do |project| %>
+                            <option value="<%= project.id %>"><%= project.name %></option>
+                          <% end %>
+                        </select>
+                        <input class="btn btn-primary btn" name="commit" type="submit" value="Save" style="margin-left:20px;">
+                      </div>
+                    </form>
+                    <div id="pivotal_projects"></div>
+                  <% else %>
+                    <div id="pivotal_projects"><div>Registered Project : <%= @project.pivotal_project_name %></div></div>
+                  <% end %>
+                  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h3 id="myModalLabel">Pivotal Authentication Form</h3>
+                    </div>
+                    <form accept-charset="UTF-8" action="<%= pivotal_authenticate_project_path(@project)%>" class="simple_form form-horizontal" data-remote="true" id="pivotal_authenticate" method="post" novalidate="novalidate">
+                      <div class="modal-body">
+                        <p>We are not going to save your email or password.</p>
+                        <div style="margin:0;padding:0;display:inline"></div>
+                        <div class="control-group">
+                          <label class="required control-label">Username/Email</label>
+                          <div class="controls">
+                            <input id="authenticate_email" name="authenticate[email]" placeholder="Email" size="30" type="email">
+                          </div>
+                          <label class="required control-label">Password</label>
+                          <div class="controls">
+                            <input id="authenticate_password" name="authenticate[password]" placeholder="Password" size="30" type="password">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <input class="btn btn-primary btn" name="commit" type="submit" value="Save">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
                 <div class="tab-pane" id="tab-flowdock">
                   <h2>Flowdock settings</h2>

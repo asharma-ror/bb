@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319085351) do
+ActiveRecord::Schema.define(:version => 20130325123215) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "auction_admin_id"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20130319085351) do
     t.text     "full"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "source_code"
+    t.text     "url"
+    t.text     "params"
+    t.text     "action"
+    t.text     "environment"
+    t.text     "context"
+    t.text     "cookies"
+    t.text     "remote_ip"
+    t.text     "browser"
   end
 
   add_index "error_traces", ["error_id"], :name => "index_error_traces_on_error_id"
@@ -49,8 +58,11 @@ ActiveRecord::Schema.define(:version => 20130319085351) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "key"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "pivotal_token"
+    t.integer  "pivotal_project_id"
+    t.string   "pivotal_project_name"
   end
 
   create_table "user_projects", :force => true do |t|
