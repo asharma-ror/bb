@@ -1,6 +1,7 @@
 <% if @notice.blank? %>
-	$("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4>Successfully added project to mention exceptions.</div><div>Registered Project : <%= @project.pivotal_project_name %></div>")
+	$("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4>Successfully added project to mention exceptions.</div><div id='pivotal_detail'><div>Registered Project : <%= @project.pivotal_project_name %></div><div>Project url: <a target='blank' href='https://www.pivotaltracker.com/projects/<%= @project.pivotal_project_id %>'>Click here</a></div><div style='clear:both;'>&nbsp</div><a href='/projects/<%= @project.id %>/pivotal_delete' class='btn' data-method='delete' data-remote='true' rel='nofollow'>Delete settings</a><a href='/projects/<%= @project.id %>/pivotal_detail' class='btn' data-method='get' data-remote='true' rel='nofollow' style='margin-left:20px;'>Edit settings</a></div>")
 	$("#pivotal").hide();
 <% else %>
   $("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
 <% end %>
+$('#spin').hide();

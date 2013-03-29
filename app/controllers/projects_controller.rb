@@ -18,11 +18,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = current_user.active_projects.find(params[:id])
-    if @project.pivotal_token
-      PivotalTracker::Client.token = @project.pivotal_token
-      @pivotal_projects = PivotalTracker::Project.all
-    end
+    fetch_pivotal_detail
   end
 
   # GET /projects/new
@@ -133,7 +129,7 @@ class ProjectsController < ApplicationController
     if pivotal_token.blank?
       @notice = "Invalid authentication details"
     else
-      @project.update_attributes(:pivotal_token => pivotal_token)
+      @project.update_attributes(:pivotal_token => pivotal_token, :pivotal_project_id => nil, :pivotal_project_name => nil)
       @pivotal_projects = PivotalTracker::Project.all
     end
   end
@@ -146,7 +142,27 @@ class ProjectsController < ApplicationController
     else
       @notice = "Something went wrong please try again later."
     end
+  end
 
+  def pivotal_delete
+    @project = current_user.active_projects.find(params[:id])
+    unless @project.update_attributes(:pivotal_token =>nil, :pivotal_project_id => nil, :pivotal_project_name => nil)
+      @notice = "Something went wrong please try again later."
+    end
+  end
+
+  def pivotal_detail
+    fetch_pivotal_detail
+  end
+
+  private
+
+  def fetch_pivotal_detail
+    @project = current_user.active_projects.find(params[:id])
+    if @project.pivotal_token
+      PivotalTracker::Client.token = @project.pivotal_token
+      @pivotal_projects = PivotalTracker::Project.all
+    end
   end
 
 end

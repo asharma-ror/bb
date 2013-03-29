@@ -27,6 +27,8 @@ Cat::Application.routes.draw do
       post 'invitation'
       post 'pivotal_authenticate'
       post 'pivotal'
+      delete 'pivotal_delete'
+      get 'pivotal_detail'
     end
   end
 

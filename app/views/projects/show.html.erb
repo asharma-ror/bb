@@ -173,23 +173,31 @@
                 </div>
                 <div class="tab-pane" id="tab-pivotal">
                   <h2>Pivotal settings</h2>
+                  <div id="pivotal_projects"></div>
                   <% if @project.pivotal_token.blank? %>
                     <a id="modal_anchor" href="#myModal" role="button" class="btn" data-toggle="modal">Authenticate</a>
-                  <% end %>
-                  <% if @project.pivotal_project_id.blank? %>
-                    <form accept-charset="UTF-8" action="<%= pivotal_project_path(@project)%>" class="simple_form form-horizontal" data-remote="true" id="pivotal" method="post" novalidate="novalidate">
-                      <div>
-                        <select id="pivotal_project" name="pivotal_project_id">
-                          <% @pivotal_projects.each do |project| %>
-                            <option value="<%= project.id %>"><%= project.name %></option>
-                          <% end %>
-                        </select>
-                        <input class="btn btn-primary btn" name="commit" type="submit" value="Save" style="margin-left:20px;">
-                      </div>
-                    </form>
-                    <div id="pivotal_projects"></div>
                   <% else %>
-                    <div id="pivotal_projects"><div>Registered Project : <%= @project.pivotal_project_name %></div></div>
+                    <% if @project.pivotal_project_id.blank?%>
+                      <form accept-charset="UTF-8" action="<%= pivotal_project_path(@project)%>" class="simple_form form-horizontal" data-remote="true" id="pivotal" method="post" novalidate="novalidate">
+                        <div>
+                          <select id="pivotal_project" name="pivotal_project_id">
+                            <% @pivotal_projects.each do |project| %>
+                              <option value="<%= project.id %>"><%= project.name %></option>
+                            <% end %>
+                          </select>
+                          <input class="btn btn-primary btn" name="commit" type="submit" value="Save" style="margin-left:20px;" onclick="$('#spin').show();">
+                          <img src="/assets/spinner.gif" class="hide" id="spin"/>
+                        </div>
+                      </form>
+                    <% else %>
+                      <div id="pivotal_detail">
+                        <div>Registered Project : <%= @project.pivotal_project_name %></div>
+                        <div>Project url: <a target="blank" href="https://www.pivotaltracker.com/projects/<%= @project.pivotal_project_id %>">Click here</a></div>
+                        <div style="clear:both;">&nbsp</div>
+                        <%= link_to "Delete settings", pivotal_delete_project_path(@project), :remote => true, :method => :delete, :class => "btn" %>
+                        <%= link_to "Edit settings", pivotal_detail_project_path(@project), :remote => true, :method => :get, :class => "btn", :style => "margin-left:20px;" %>
+                      </div>
+                    <% end %>
                   <% end %>
                   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-header">
@@ -212,7 +220,8 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <input class="btn btn-primary btn" name="commit" type="submit" value="Save">
+                        <img src="/assets/spin.gif" class="hide" id="spinner"/>
+                        <input id="modal_submit" class="btn btn-primary btn" name="commit" type="submit" value="Save" onclick="$('#spinner').show();$(this).attr('disabled', 'disabled');">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                       </div>
                     </form>

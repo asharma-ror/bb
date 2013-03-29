@@ -1,0 +1,7 @@
+<% if @notice.blank? %>
+	$("#pivotal_detail").hide();
+	$("#pivotal_projects").html("");
+	$("#pivotal_projects").after("<a id='modal_anchor' href='#myModal' role='button' class='btn' data-toggle='modal'>Authenticate</a>")
+<% else %>
+  $("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
+<% end %>

@@ -4,9 +4,11 @@
 	<% @pivotal_projects.each do |project| %>
     new_html += "<option value='<%= project.id %>'><%= project.name %></option>"
   <% end %>
-  new_html += "</select><input class='btn btn-primary btn' name='commit' type='submit' value='Save' style='margin-left:20px;'></div></form>"
+  new_html += "</select><input class='btn btn-primary btn' name='commit' type='submit' value='Save' style='margin-left:20px;' onclick=" + "$(\'#spin\').show();" + "><img src='/assets/spinner.gif' class='hide' id='spin'/></div></form>"
   $("#pivotal_projects").html(new_html);
 <% else %>
   $("#pivotal_projects").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
 <% end %>
 $("#myModal").modal('hide');
+$("#spinner").hide();
+$("#modal_submit").removeAttr("disabled");
