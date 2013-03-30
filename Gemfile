@@ -21,6 +21,7 @@ gem 'enumerize'
 gem 'devise_invitable'
 gem 'geokit-rails3'
 gem 'pivotal-tracker'
+gem 'tinder'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

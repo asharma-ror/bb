@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325123215) do
+ActiveRecord::Schema.define(:version => 20130330064133) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "auction_admin_id"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(:version => 20130325123215) do
     t.string   "pivotal_token"
     t.integer  "pivotal_project_id"
     t.string   "pivotal_project_name"
+    t.string   "campfire_room"
+    t.string   "campfire_subdomain"
+    t.string   "campfire_token"
+    t.boolean  "campfire_activate"
+    t.integer  "campfire_room_id"
   end
 
   create_table "user_projects", :force => true do |t|

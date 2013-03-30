@@ -1,0 +1,7 @@
+<% if @notice.blank? %>
+	$("#campfire_detail").hide();
+	$("#campfire_area").html("");
+	$("#campfire_area").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4> pivotal detail deleted successfully.</div><form accept-charset='UTF-8' action='<%= campfire_authenticate_project_path(@project)%>' class='simple_form form-horizontal' data-remote='true' id='campfire_authenticate' method='post' novalidate='novalidate'><div class='control-group required string'><label class='control-label required string'><abbr title='required'>*</abbr>Subdomain</label><div class='controls'><input class='string required' name='campfire[campfire_subdomain]' type='text' value=''></div></div><div class='control-group required string'><label class='control-label required string'><abbr title='required'>*</abbr>Room</label><div class='controls'><input class='string required' name='campfire[campfire_room]' type='text' value=''></div></div><div class='control-group required string'><label class='control-label required string'><abbr title='required'>*</abbr>Token</label><div class='controls'><input class='string required' name='campfire[campfire_token]' type='text' value=''></div></div><div class='form-actions'><input class='btn btn-primary' type='submit' value='Save'></div></form>")
+<% else %>
+  $("#campfire_area").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
+<% end %>

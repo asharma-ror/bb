@@ -29,6 +29,9 @@ Cat::Application.routes.draw do
       post 'pivotal'
       delete 'pivotal_delete'
       get 'pivotal_detail'
+      post 'campfire_authenticate'
+      delete 'campfire_delete'
+      get 'campfire_detail'
     end
   end
 

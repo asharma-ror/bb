@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
 
   has_many :users, :dependent => :destroy, :through => :user_projects
 
-  attr_accessible :key, :name, :pivotal_token, :pivotal_project_id, :pivotal_project_name
+  attr_accessible :key, :name, :pivotal_token, :pivotal_project_id, :pivotal_project_name, :campfire_room, :campfire_subdomain, :campfire_token, :campfire_activate, :campfire_room_id
 
   before_create :create_unique_identifier
 

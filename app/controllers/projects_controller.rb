@@ -125,7 +125,7 @@ class ProjectsController < ApplicationController
 
   def pivotal_authenticate
     @project = current_user.active_projects.find(params[:id])
-    pivotal_token = PivotalTracker::Client.token(params[:authenticate][:email], params[:authenticate][:password]) rescue nil
+    pivotal_token = PivotalTracker::Client.token(params[:authenticate]) rescue nil
     if pivotal_token.blank?
       @notice = "Invalid authentication details"
     else
@@ -146,13 +146,36 @@ class ProjectsController < ApplicationController
 
   def pivotal_delete
     @project = current_user.active_projects.find(params[:id])
-    unless @project.update_attributes(:pivotal_token =>nil, :pivotal_project_id => nil, :pivotal_project_name => nil)
+    unless @project.update_attributes(:pivotal_token => nil, :pivotal_project_id => nil, :pivotal_project_name => nil)
       @notice = "Something went wrong please try again later."
     end
   end
 
   def pivotal_detail
     fetch_pivotal_detail
+  end
+
+  def campfire_authenticate
+    @project = current_user.active_projects.find(params[:id])
+    campfire = Tinder::Campfire.new(params[:campfire][:campfire_subdomain], :token => params[:campfire][:campfire_token])
+    authenticate = campfire.me rescue nil
+    if authenticate
+      room_id = campfire.find_room_by_name(params[:campfire][:campfire_room])
+      @project.update_attributes(params[:campfire].merge(:campfire_room_id => room_id.id))
+    else
+      @notice = "Invalid authentication details"
+    end
+  end
+
+  def campfire_delete
+    @project = current_user.active_projects.find(params[:id])
+    unless @project.update_attributes(:campfire_room_id => nil, :campfire_room => nil, :campfire_subdomain => nil, :campfire_token => nil)
+      @notice = "Something went wrong please try again later."
+    end
+  end
+
+  def campfire_detail
+    @project = current_user.active_projects.find(params[:id])
   end
 
   private

@@ -169,7 +169,58 @@
                 </div>
                 <div class="tab-pane" id="tab-campfire">
                   <h2>Campfire settings</h2>
-                  <p>comming soon...</p>
+                  <div id="campfire_area"></div>
+                  <% if @project.campfire_subdomain.blank? %>
+                    <form accept-charset="UTF-8" action="<%= campfire_authenticate_project_path(@project)%>" class="simple_form form-horizontal" data-remote="true" id="campfire_authenticate" method="post" novalidate="novalidate">
+                      <div class="control-group required string">
+                        <label class="control-label required string">
+                          <abbr title="required">*</abbr>
+                          Subdomain
+                        </label>
+                        <div class="controls">
+                          <input class="string required" name="campfire[campfire_subdomain]" type="text" value="">
+                        </div>
+                      </div>
+                      <div class="control-group required string">
+                        <label class="control-label required string">
+                          <abbr title="required">*</abbr>
+                          Room
+                        </label>
+                        <div class="controls">
+                          <input class="string required" name="campfire[campfire_room]" type="text" value="">
+                        </div>
+                      </div>
+                      <div class="control-group required string">
+                        <label class="control-label required string">
+                          <abbr title="required">*</abbr>
+                          Token
+                        </label>
+                        <div class="controls">
+                          <input class="string required" name="campfire[campfire_token]" type="text" value="">
+                        </div>
+                      </div>
+                      <!--<div class="control-group">
+                        <div class="controls">
+                          <label class="checkbox" for="campfire_activate"><input name="campfire[campfire_activate]" type="hidden" value="0"><input checked="checked" id="12153500_watch_active" name="campfire[campfire_activate]" type="checkbox" value="1">
+                            Activate
+                          </label>
+                        </div>
+                      </div>-->
+                      <div class="form-actions">
+                        <input class="btn btn-primary" type="submit" value="Save">
+                      </div>
+                    </form>
+                  <% else %>
+                    <div id="campfire_detail">
+                      <div>Subdomain : <%= @project.campfire_subdomain %></div>
+                      <div>Campfire room url: <a target="blank" href="https://<%= @project.campfire_subdomain %>.campfirenow.com/room/<%= @project.campfire_room_id %>">Click here</a></div>
+                      <div>Token : <%= @project.campfire_token %></div>
+                      <div>Room name : <%= @project.campfire_room %></div>
+                      <div style="clear:both;">&nbsp</div>
+                      <%= link_to "Delete settings", campfire_delete_project_path(@project), :remote => true, :method => :delete, :class => "btn" %>
+                      <%= link_to "Edit settings", campfire_detail_project_path(@project), :remote => true, :method => :get, :class => "btn", :style => "margin-left:20px;" %>
+                    </div>
+                  <% end %>
                 </div>
                 <div class="tab-pane" id="tab-pivotal">
                   <h2>Pivotal settings</h2>

@@ -30,6 +30,11 @@ class ExceptionsController < ApplicationController
           @pivotal_project = PivotalTracker::Project.find(project.pivotal_project_id)
           @pivotal_project.stories.create(:name => name, :story_type => 'bug', :description => desc)
         end
+        if project.campfire_token
+          campfire = Tinder::Campfire.new(project.campfire_subdomain, :token => project.campfire_token)
+          desc = "New Exception : " + project.name + " : " + error.title
+          campfire.find_room_by_name(project.campfire_room).speak(desc)
+        end
       else
         error = error_trace.error
         error.count = error.count + 1
