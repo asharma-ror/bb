@@ -125,7 +125,7 @@ class ProjectsController < ApplicationController
 
   def pivotal_authenticate
     @project = current_user.active_projects.find(params[:id])
-    pivotal_token = PivotalTracker::Client.token(params[:authenticate]) rescue nil
+    pivotal_token = PivotalTracker::Client.token(params[:authenticate][:email], params[:authenticate][:password]) rescue nil
     if pivotal_token.blank?
       @notice = "Invalid authentication details"
     else
