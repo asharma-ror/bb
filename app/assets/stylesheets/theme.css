@@ -819,4 +819,17 @@ i.forrst { background-position: -156px -51px; }
 i.rss { background-position: -194px -51px; }
 i.myspace { background-position: -233px -51px; }
 
+#customer_list{
+  margin: 50px;
+}
 
+.customer_logo{
+  border-width: 1px;
+  height: 100px;
+  width: 20%;
+  float: left;
+}
+
+.customer_logo img{
+  margin:25px;
+}
