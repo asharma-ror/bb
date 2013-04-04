@@ -15,5 +15,6 @@ class User < ActiveRecord::Base
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
   has_many :user_projects, :dependent => :destroy
   has_many :active_projects, :through => :user_projects, :source => :project , :conditions => { "user_projects.status" => true }
+  has_many :subscriptions, :dependent => :destroy
 
 end

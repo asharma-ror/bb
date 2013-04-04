@@ -1,4 +1,7 @@
 Cat::Application.routes.draw do
+  resources :subscriptions, :only => [:new, :create]
+
+
   match '/v1/notices' => 'exceptions#exception'
 
   devise_for :users
