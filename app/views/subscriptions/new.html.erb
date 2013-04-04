@@ -1,0 +1,75 @@
+<div class="container">
+  <div id="stripe_error" style="color:red;"></div>
+  <%= form_for @subscription do |f|  %>  
+    <% if @subscription.stripe_card_token.present? %>
+      Credit card has been provided.
+    <% else %>
+      <%= f.hidden_field :stripe_card_token %>
+      <div class="field">
+        <%= label_tag :card_number, "Credit Card Number" %>
+        <%= text_field_tag :card_number, nil, name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+        <%= text_field_tag :card_code, nil, name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_month, "Card Expiration" %>
+        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+      </div>
+    <% end %>
+      <div class="field">
+        <%= f.submit "Submit", :class => "btn btn-success" %>
+      </div>
+  <% end %>
+</div>
+
+
+ <script type="text/javascript">
+ var subscription;
+
+ jQuery(function() {
+   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+   return subscription.setupForm();
+ });
+
+ subscription = {
+   
+   setupForm: function() {
+     return $('#new_subscription').submit(function() {
+
+       $('input[type=submit]').attr('disabled', true);
+       if ($('#card_number').length) {
+         subscription.processCard();
+         return false;
+       } else {
+         return true;
+       }
+     });
+   },
+
+   processCard: function() {
+     var card;
+     card = {
+       number: $('#card_number').val(),
+      cvc: $('#card_code').val(),
+      expMonth: $('#card_month').val(),
+      expYear: $('#card_year').val()
+     };
+     return Stripe.createToken(card, subscription.handleStripeResponse);
+   },
+
+  handleStripeResponse: function(status, response) {
+    if (status === 200) {
+      $('#subscription_stripe_card_token').val(response.id);
+      return $('#new_subscription')[0].submit();
+    } else {
+      $('#stripe_error').text(response.error.message);
+      return $('input[type=submit]').attr('disabled', false);
+    }
+  }
+ };
+
+
+</script>
