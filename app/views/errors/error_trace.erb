@@ -31,6 +31,19 @@
       <% end %>
     </div>
   </div>
+
+  <div class="row-fluid" style="margin-top:20px;">
+    <div class="span12 well">
+      <error-message url="<%=error_trace_path(:project_id => @error_trace.error.project.id, :error_id => @error_trace.error.id)%>" style="cursor:pointer;">
+      <i class="icon icon-arrow-right"></i>
+      <span>
+        <b><%= @error_trace.error.title %></b><br/>
+        <%= @error_trace.error.desc %>
+      </span>
+      </error-message>
+  </div>
+  </div>
+
   <div class="row-fluid">
     <div class="span12">
       <div class="widget-box">
@@ -93,7 +106,12 @@
               <%= debug(@location.full_address.to_s + ", Lat:" + @location.lat.to_s + ", Lan:" + @location.lng.to_s) %>
             <% end %>
             <h5>View Source:</h5>
-            <%= debug(@error_trace.source_code) %>
+            <p class="well">
+              <% @error_trace.source_code.each do |source|%>
+                <%= source[0] rescue ""%>: <%=source[1] rescue ""%>
+                <br/>
+              <% end %>
+            </p>
           </div>
 
           <div id="params" class="tab-pane">
