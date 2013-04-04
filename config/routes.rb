@@ -23,6 +23,12 @@ Cat::Application.routes.draw do
 
   match 'dashboard' => 'home#dashboard', :as => :dashboard
 
+ resources :users do
+    collection do
+      get 'upgrade'
+    end
+  end
+
   resources :projects do
     member do
       put 'accept'

@@ -495,7 +495,9 @@ body {
     right: -30px;
   }
   #pricing .price_wrapper.standard {
-    left: -30px;
+    left: -140px;
+    top: -20px;
+    height: 460px;
   }
   #hero .carousel-inner .item.slide1 .span6 img {
     margin-left: 15px;

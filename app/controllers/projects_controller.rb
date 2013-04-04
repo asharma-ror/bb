@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   layout "auction"
   before_filter :authenticate_user!
+  before_filter :check_user_plan
 
   # GET /projects
   # GET /projects.json
