@@ -1,29 +1,30 @@
 <div class="container">
   <div id="stripe_error" style="color:red;"></div>
-  <%= form_for @subscription do |f|  %>  
     <% if @subscription.stripe_customer_token.present? %>
-      Credit card has been provided.
+      <h4>You are alreday subscribe user. Credit card has been already provided.<h4>
+      <h3><%= link_to "Go to work", projects_path %></h3>
     <% else %>
-      <%= f.hidden_field :stripe_customer_token %>
-      <%= f.hidden_field :plan_id %>
-      <div class="field">
-        <%= label_tag :card_number, "Credit Card Number" %>
-        <%= text_field_tag :card_number, nil, name: nil %>
-      </div>
-      <div class="field">
-        <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-        <%= text_field_tag :card_code, nil, name: nil %>
-      </div>
-      <div class="field">
-        <%= label_tag :card_month, "Card Expiration" %>
-        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-      </div>
+      <%= form_for @subscription do |f|  %>
+        <%= f.hidden_field :stripe_customer_token %>
+        <%= f.hidden_field :plan_id %>
+        <div class="field">
+          <%= label_tag :card_number, "Credit Card Number" %>
+          <%= text_field_tag :card_number, nil, name: nil %>
+        </div>
+        <div class="field">
+          <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+          <%= text_field_tag :card_code, nil, name: nil %>
+        </div>
+        <div class="field">
+          <%= label_tag :card_month, "Card Expiration" %>
+          <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+        </div>
+        <div class="field">
+          <%= f.submit "Submit", :class => "btn btn-success" %>
+        </div>
+      <% end %>
     <% end %>
-      <div class="field">
-        <%= f.submit "Submit", :class => "btn btn-success" %>
-      </div>
-  <% end %>
 </div>
 
 

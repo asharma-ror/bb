@@ -8,6 +8,10 @@ class Subscription < ActiveRecord::Base
       customer = Stripe::Customer.create(email: user.email, plan: plan_id, card: card_token)
       self.stripe_customer_token = customer.id
       self.plan_id = plan_id
+      self.is_active = true
+      self.start_date = Time.now
+      plan_days = Plan.find(plan_id).days
+      self.end_date = Time.now + plan_days.days
       save!
     end
   rescue Stripe::StripeError => e

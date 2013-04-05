@@ -27,6 +27,16 @@ Cat::Application.routes.draw do
     collection do
       get 'upgrade'
     end
+    
+    member do
+      get 'cancel_user_plan'
+    end
+  end
+
+  resources :projects do
+    collection do
+      post 'receiver'
+    end
   end
 
   resources :projects do

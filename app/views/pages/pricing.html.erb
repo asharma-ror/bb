@@ -12,7 +12,7 @@
     
     
     <div class="row">
-      <div class="span8">
+      <div class="span12">
         <div class="price_wrapper pro" style="height: 460px;">
           <div class="header">
               <span>Basic:</span>
@@ -21,60 +21,6 @@
                   Per Month
               </div>
           </div>
-          <div class="section">
-            <h3>Limited projects and work with 3rd party project management tools.</h3>
-            <ul class="unstyled">
-            <li>
-            <i class="icon-ok"></i>
-            <strong>1 Project</strong>
-            </li>
-            <li>
-            <li>
-            <i class="icon-ok"></i>
-            <strong>2 Members</strong>
-            </li>
-            <li>
-            <i class="icon-ok"></i>
-            <strong>SSL enabled by default</strong>
-            </li>
-            <li>
-            <i class="icon-ok"></i>
-            <strong>Full text error search</strong>
-            </li>
-            <li>
-            <i class="icon-ok"></i>
-            <strong>Notification by email</strong>
-            </li>
-            
-            <li>
-            <i class="icon-ok"></i>
-            <strong>Campfire</strong>
-            </li>
-                        
-            <li>
-            <i class="icon-ok"></i>
-            <strong>BaseCamp(Coming soon...)</strong>
-            </li>
-            
-            </ul>
-            <% if current_user %>
-              <%= link_to "Get Plan", new_subscription_path(:plan_id => "1"), :class=>"btn" %>
-            <% else %>
-              <a href="/users/sign_up" class="btn">SignUp Now</a>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      
-      <div class="span4">
-          <div class="price_wrapper standard regular">
-              <div class="header">
-                  <span>Advanced</span>
-                  <div class="price">
-                      <span>$ 100</span>
-                      Per Month
-                  </div>
-              </div>
           <div class="section">
             <h3>Unlimited projects and work with 3rd party project management tools.</h3>
             <ul class="unstyled">
@@ -120,12 +66,12 @@
             
             </ul>
             <% if current_user %>
-              <%= link_to "Get Plan", new_subscription_path(:plan_id => "2"), :class=>"btn" %>
+              <%= link_to "Get Plan", new_subscription_path(:plan_id => "1"), :class=>"btn" %>
             <% else %>
               <a href="/users/sign_up" class="btn">SignUp Now</a>
             <% end %>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>

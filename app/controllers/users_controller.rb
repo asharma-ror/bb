@@ -5,4 +5,16 @@ class UsersController < ApplicationController
   
   def upgrade
   end
+  
+  def cancel_user_plan
+    subscription = current_user.subscriptions.last
+    begin
+      customer = Stripe::Customer.retrieve(subscription.stripe_customer_token)
+      customer.delete
+      subscription.is_active = false
+      redirect_to projects_path, :flash => {:notice => "Plan has been successfully deleted"}
+    rescue
+      redirect_to projects_path, :flash => {:notice => "Error occured during process"}
+    end
+  end
 end

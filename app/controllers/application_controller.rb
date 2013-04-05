@@ -33,21 +33,20 @@ class ApplicationController < ActionController::Base
   end
   
   def check_user_plan
-    @trail_duration = (current_user.created_at + 30.days)
-    if @trail_duration < $now
-      flash[:notice] = "Your trail period has beed finished. please take any plan now"
-      render :template => "/users/upgrade"
+    trail_duration = (current_user.created_at + 15.days)
+    subscription = current_user.subscriptions
+    if !subscription.blank?
+      sub = subscription.last
+      if sub.is_active == true
+        return true
+      else
+        flash[:notice] = "Your trail period has beed finished. please take a plan now"
+        render :template => "/users/upgrade"
+      end
     else
-      subscription = current_user.subscriptions.last
-      unless subscription.blank?
-        plan_days = Plan.find(subscription.plan_id).days
-        expire = subscription.created_at + plan_days
-        if @trail_duration < $now
-          flash[:notice] = "Your current plan has beed expired. please upgrade your plan to continue"
-          render :template => "/users/upgrade"
-        else
-          return true
-        end
+      if trail_duration < $now
+        flash[:notice] = "Your trail period has beed finished. please take a plan now"
+        render :template => "/users/upgrade"
       else
         return true
       end

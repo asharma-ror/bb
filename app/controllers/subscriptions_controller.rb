@@ -3,7 +3,8 @@ class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!
   
   def new
-    @subscription = Subscription.new(:plan_id => params[:plan_id])
+    subscription = current_user.subscriptions.last
+    @subscription = subscription.blank? ? Subscription.new(:plan_id => params[:plan_id]) : subscription
   end
 
   def create
