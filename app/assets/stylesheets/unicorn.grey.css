@@ -3,18 +3,13 @@
  * Diablo9983 -> diablo9983@gmail.com
 **/
 body {
-	background-color: #444444;
+	background: url(/assets/header-bg.jpg) repeat;
 }
 
 #header {
     box-shadow: 0 1px 0 #333333;
-	background-color: #333333;
-    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#3F3F3F), to(#222222));
-    background-image: -webkit-linear-gradient(top, #3F3F3F 0%, #222222 100%);
-    background-image: -moz-linear-gradient(top, #3F3F3F 0%, #222222 100%);
-	background-image: -ms-linear-gradient(top, #3F3F3F 0%, #222222 100%);
-	background-image: -o-linear-gradient(top, #3F3F3F 0%, #222222 100%);
-	background-image: linear-gradient(top, #3F3F3F 0%, #222222 100%);
+
+    background: url(/assets/blue-header.jpg) repeat-x;
     border-bottom: 1px solid #555555;
 }
 
@@ -34,13 +29,7 @@ body {
 	border-bottom: 1px solid #393939;
 }
 #sidebar > ul > li.active {
-    background-color: #3a3a3a;
-	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#333333), to(#3F3F3F));
-	background-image: -webkit-linear-gradient(top, #333333 0%, #3F3F3F 100%);
-	background-image: -moz-linear-gradient(top, #333333 0%, #3F3F3F 100%);
-	background-image: -ms-linear-gradient(top, #333333 0%, #3F3F3F 100%);
-	background-image: -o-linear-gradient(top, #333333 0%, #3F3F3F 100%);
-	background-image: linear-gradient(top, #333333 0%, #3F3F3F 100%);
+    background-color: #173a50;
 }
 
 #sidebar > ul > li.open.submenu > a {
@@ -96,4 +85,9 @@ body {
 	#sidebar > ul ul:after {
 		border-right: 6px solid #222222;
     }
+}
+
+#user-nav ul li{
+  background-color:#173a50;
+  background-image:none;
 }
