@@ -1,6 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :plan_id, :user_id, :end_date, :start_date, :is_active, :canceled_date, :stripe_card_token
-  attr_accessor :stripe_customer_token
+  attr_accessible :plan_id, :user_id, :end_date, :start_date, :is_active, :canceled_date, :stripe_card_token, :stripe_customer_token
   has_one :plan, :dependent => :destroy
   belongs_to :user
 
