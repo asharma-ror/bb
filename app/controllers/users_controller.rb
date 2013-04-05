@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       customer = Stripe::Customer.retrieve(subscription.stripe_customer_token)
       customer.delete
       subscription.is_active = false
+      subscription.save!
       redirect_to projects_path, :flash => {:notice => "Plan has been successfully deleted"}
     rescue
       redirect_to projects_path, :flash => {:notice => "Error occured during process"}

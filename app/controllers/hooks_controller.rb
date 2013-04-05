@@ -27,7 +27,7 @@ class HooksController < ApplicationController
   def make_subscription_cancel(data)
      subscription = Subscription.find_by_stripe_customer_token(data['data']['object']['customer'])
      if subscription.present?
-      cust_subscripton = data['data']['object']['canceled_at']
+      subscription.canceled_date = Time.at(data['data']['object']['canceled_at'].to_i)
       subscription.is_active = false
       subscription.save!
      end
