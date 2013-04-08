@@ -1,12 +1,13 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :plan_id, :user_id, :end_date, :start_date, :is_active, :canceled_date, :stripe_card_token, :stripe_customer_token
+  attr_accessible :plan_id, :user_id, :end_date, :start_date, :is_active, :canceled_date, :stripe_customer_token
+  attr_accessor :stripe_card_token
   has_one :plan, :dependent => :destroy
   belongs_to :user
 
   def save_with_payment_on_stripe(user, card_token, plan_id)
     if valid?
       customer = Stripe::Customer.create(email: user.email, plan: plan_id, card: card_token)
-      self.stripe_card_token = customer.id
+      self.stripe_customer_token = customer.id
       self.plan_id = plan_id
       self.is_active = true
       self.start_date = Time.now

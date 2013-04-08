@@ -5,7 +5,7 @@
       <h3><%= link_to "Go to work", projects_path %></h3>
     <% else %>
       <%= form_for @subscription do |f|  %>
-        <%= f.hidden_field :stripe_customer_token %>
+        <%= f.hidden_field :stripe_card_token %>
         <%= f.hidden_field :plan_id %>
         <div class="field">
           <%= label_tag :card_number, "Credit Card Number" %>
@@ -64,7 +64,7 @@
 
   handleStripeResponse: function(status, response) {
     if (status === 200) {
-      $('#subscription_stripe_customer_token').val(response.id);
+      $('#subscription_stripe_card_token').val(response.id);
       return $('#new_subscription')[0].submit();
     } else {
       $('#stripe_error').text(response.error.message);
