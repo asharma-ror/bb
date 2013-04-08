@@ -26,11 +26,11 @@ a:hover {
 #header h1 {
     background: url("/assets/logo.png") no-repeat scroll 0 0 transparent;
     height: 31px;
-    left: 15px;
+    left: 67px;
     line-height: 600px;
     overflow: hidden;
     position: relative;
-    top: 40px;
+    top: 16px;
     width: 191px;
 }
 
@@ -138,7 +138,7 @@ a:hover {
         margin: 10px 0 0;
         padding: 0;
         position: absolute;
-        width: 220px;
+        width: 175px;
 }
 #sidebar > ul > li {
         display: block;
@@ -197,13 +197,14 @@ a:hover {
 /* Content */
 #content {
     background: none repeat scroll 0 0 #eeeeee;
-    margin-left: 220px;
+    margin-left: 177px;
     margin-right: 0;
     padding-bottom: 25px;
     position: relative;
     min-height: 500px;
     width: auto;
-
+    margin-top: 47px;
+    margin-right: 5px;
     border-top-left-radius: 8px;
 }
 

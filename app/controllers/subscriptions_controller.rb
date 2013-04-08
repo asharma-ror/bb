@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
 
   before_filter :authenticate_user!
+  layout "auction"
   
   def new
     subscription = current_user.subscriptions.last

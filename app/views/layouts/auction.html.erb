@@ -5,7 +5,9 @@
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= stylesheet_link_tag    "auction_admin_application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
     <%= csrf_meta_tags %>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 
   <style type="text/css">
     abbr {
