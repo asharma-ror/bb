@@ -1,5 +1,5 @@
 class BatbuggerMailer < ActionMailer::Base
-  default from: "no-reply@grepruby.com"
+  default from: "support@batbugger.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
