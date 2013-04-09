@@ -13,64 +13,30 @@
       <% end %>
     </div>
   </div>
-  <% if @project_invitations.present? %>
-    <%= render :partial => "project_invitation"%>
-  <% end %>
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="widget-box">
-        <div class="widget-title">
-          <span class="icon">
-            <i class="icon-th"></i>
-          </span>
-          <h5>Projects</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Project name</th>
-                <th>Key</th>
-                <th>Open</th>
-                <th>Total</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <% @projects.each_with_index do |project, index| %>
-              <tbody>
-                <tr>
-                  <td>
-                     <%= index + 1%>
-                  </td>
-                  <td width="40%">
-                    <%= link_to exception_path(project) do %>
-                      <span data-original-title="see exceptions" class="tip-top">
-                      <%= project.name %>
-                      </span>
-                    <%end %>
-                  </td>
-                  <td width="20%"><b><%= project.key %></b></td>
-                  <td width="10%"><b><%= project.project_errors.active.size %></b></td>
-                  <td width="10%"><b><%= project.project_errors.size %></b></td>
-                  <td width="10%">
-                    <%= link_to project_path(project) do %>
-                      <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to exception_path(project) do %>
-                      <button class="btn btn-danger btn-mini">Exceptions</button>
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render :partial => "project_errors" %>
 </div>
+
+<script type="text/javascript">
+  
+var interval = null;
+
+  jQuery(function(){
+    interval = setInterval(get_latest_errors, 5000);
+  });
+
+  function get_latest_errors(){
+    $.ajax({
+      url: "/projects/get_project_errors",
+      type: "get",
+      success: function(data){
+          alert('success');
+          $('#project_results').html(data);
+      },
+      error:function(){
+          alert("failure");
+      }   
+    }); 
+  }
+
+</script>
 

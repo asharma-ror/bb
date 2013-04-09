@@ -52,6 +52,10 @@ Cat::Application.routes.draw do
       delete 'campfire_delete'
       get 'campfire_detail'
     end
+    
+    collection do
+      get 'get_project_errors'
+    end
   end
 
   root :to => 'home#index'

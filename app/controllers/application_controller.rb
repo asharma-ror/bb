@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       if sub.is_active == true
         return true
       else
-        flash[:notice] = "Your trail period has beed finished. please take a plan now"
+        flash[:notice] = "Your subscription has beed deactivated. please take a plan now"
         render :template => "/users/upgrade"
       end
     else

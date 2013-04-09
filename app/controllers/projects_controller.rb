@@ -178,6 +178,12 @@ class ProjectsController < ApplicationController
   def campfire_detail
     @project = current_user.active_projects.find(params[:id])
   end
+  
+  def get_project_errors
+    @projects = current_user.active_projects.includes(:project_errors)
+    @project_invitations = current_user.user_projects.pending
+    render :partial => "project_errors", :layout => false
+  end
 
   private
 
