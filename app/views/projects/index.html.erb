@@ -18,7 +18,7 @@
 
 <script type="text/javascript">
   
-var interval = null;
+ var interval = null;
 
   jQuery(function(){
     interval = setInterval(get_latest_errors, 5000);
@@ -29,12 +29,8 @@ var interval = null;
       url: "/projects/get_project_errors",
       type: "get",
       success: function(data){
-          alert('success');
           $('#project_results').html(data);
-      },
-      error:function(){
-          alert("failure");
-      }   
+      }  
     }); 
   }
 
