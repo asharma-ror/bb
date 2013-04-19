@@ -23,6 +23,7 @@ gem 'geokit-rails3'
 gem 'pivotal-tracker'
 gem 'tinder'
 gem 'stripe'
+gem 'newrelic_rpm'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
