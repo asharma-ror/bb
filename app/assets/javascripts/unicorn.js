@@ -131,4 +131,14 @@ $(document).ready(function(){
 		$(this).siblings('a').css({'border-color':'transparent'});
 		$(this).css({'border-color':'#aaaaaa'});
 	});
+	
+  $("#invitation_form").validate();
+  
+	$("#invitation_form").bind("ajax:beforeSend", function(evt, xhr, settings){
+  	$("#invitation_submit").val('Loading....');
+		$("#invitation_submit").attr('disabled', 'disabled');
+	});
+
+  $("#campfire_authenticate").validate();
+  $("#pivotal_authenticate").validate();
 });

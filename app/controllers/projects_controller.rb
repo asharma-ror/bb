@@ -85,14 +85,15 @@ class ProjectsController < ApplicationController
 
 
   def invitation
-    project = current_user.active_projects.find(params[:id])
+    @project = current_user.active_projects.find(params[:id])
+    redirect_to project_path(@project) if params[:invitation][:email].blank?
     user = User.where(:email => params[:invitation][:email]).first
     if user.present?
        if user.encrypted_password.blank?
          user = User.invite!({:email => params[:invitation][:email]}, current_user)
        else
-         unless user.user_projects.map(&:project).include?(project)
-           UserMailer.project_invitation(current_user, user).deliver
+         unless user.user_projects.map(&:project).include?(@project)
+           UserMailer.project_invitation(current_user, user, @project).deliver
          else
            @notice = "User has already assined this project"
          end
@@ -100,9 +101,9 @@ class ProjectsController < ApplicationController
     else
       user = User.invite!({:email => params[:invitation][:email]}, current_user)
     end
-    unless user.user_projects.map(&:project).include?(project)
+    unless user.user_projects.map(&:project).include?(@project)
       UserProject.create(:user_id => user.id,
-        :project_id => project.id,
+        :project_id => @project.id,
         :status => false
       )
     end

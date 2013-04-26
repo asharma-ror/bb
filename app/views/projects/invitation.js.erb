@@ -1,6 +1,20 @@
 $("#invitation_email").val("");
 <% if @notice.blank? %>
+	new_table = "<table class='table table-striped table-bordered'><thead><tr><th>Email</th><th>Status</th></tr></thead><tbody>"
+	<% @project.user_projects.each do |user_project|%>
+		new_table += "<tr><td class='taskDesc'><%=user_project.user.email%></td><td class='taskStatus'>"
+	<% if user_project.status %>
+		new_table += "<span class='label label-success'>active</span>"
+	<% else %>
+		new_table += "<span class='label label-warning'>pending</span>"
+	<% end %>
+		new_table += "</td></tr>"
+	<% end %>
+	new_table += "</tbody></table>"
+	$("#collaborator_list").html(new_table);
   $("#invitation_response").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><h4 class='alert-heading'>Success!</h4> Invitation has been sent Successfully!</div>");
 <% else %>
   $("#invitation_response").html("<div class='alert alert-success alert-block'><a class='close' data-dismiss='alert' href='#'>×</a><%= @notice %></div>")
 <% end %>
+$("#invitation_submit").removeAttr("disabled");
+$("#invitation_submit").val("Send Invitation");
