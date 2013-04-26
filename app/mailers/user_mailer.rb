@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     @invited_by = inviter
     @project = project
     # attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
-    mail(:to => "#{invitee.email}", :subject => "Batbugger: Project Invitation")
+    mail :to => "#{invitee.email}", :subject => "Batbugger: Project Invitation"
   end
 
 end
