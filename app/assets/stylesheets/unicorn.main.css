@@ -26,11 +26,11 @@ a:hover {
 #header h1 {
     background: url("/assets/logo.png") no-repeat scroll 0 0 transparent;
     height: 31px;
-    left: 67px;
+    left: 10px;
     line-height: 600px;
     overflow: hidden;
     position: relative;
-    top: 24px;
+    top: 15px;
     width: 191px;
 }
 
@@ -43,7 +43,7 @@ a:hover {
         position: absolute;
         z-index: 25;
         top: 6px;
-        left: 230px;
+        left: 180px;
 }
 #search input[type=text] {
         border-radius: 4px 0 0 4px;
@@ -219,7 +219,7 @@ a:hover {
     height: 80px;
     position: abslute;
     width: 100%;
-    margin-top: -38px;
+    margin-top: -80px;
     z-index: 20;
 }
 
