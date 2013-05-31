@@ -17,8 +17,8 @@
           <div class="header">
               <span>Basic:</span>
               <div class="price">
-                  <span>$ 5</span>
-                  Per Month
+                  <span>Free</span>
+                  Beta Version
               </div>
           </div>
           <div class="section">
@@ -34,7 +34,7 @@
             </li>
             <li>
             <i class="icon-ok"></i>
-            <strong>SSL enabled by default</strong>
+            <strong>SSL enabled by default(Coming soon...)</strong>
             </li>
             <li>
             <i class="icon-ok"></i>
@@ -65,11 +65,11 @@
             </li>
             
             </ul>
-            <% if current_user %>
-              <%= link_to "Get Plan", new_subscription_path(:plan_id => "1"), :class=>"btn" %>
-            <% else %>
-              <a href="/users/sign_up" class="btn">SignUp Now</a>
-            <% end %>
+            <%# if current_user %>
+              <%#= link_to "Get Plan", new_subscription_path(:plan_id => "1"), :class=>"btn" %>
+            <%# else %>
+              <!--<a href="/users/sign_up" class="btn">SignUp Now</a>-->
+            <%# end %>
           </div>
         </div>
       </div>
