@@ -13,7 +13,7 @@ class Story < ActiveRecord::Base
     "Story Type","Estimate","Current State","Created at","Accepted at",
     "Deadline","Requested By","Owned By","Description","URL"
   ]
-  #attr_accessible  :title, :description, :estimate, :story_type, :state, :accepted_at, :requested_by_id, :owned_by_id, :project_id, :position, :labels
+  attr_accessible  :title, :description, :estimate, :story_type, :state, :accepted_at, :requested_by_id, :owned_by_id, :project_id, :position, :labels
 
   belongs_to :project
   validates_presence_of :project

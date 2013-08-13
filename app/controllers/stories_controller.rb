@@ -3,7 +3,6 @@ class StoriesController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def index
-    debugger
     @project = current_user.projects.find(params[:project_id],
                                           :include => {:stories => :notes})
     @stories = @project.stories

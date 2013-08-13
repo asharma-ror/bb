@@ -1,0 +1,59 @@
+
+<%= form_for(@project, :html=> {:class => "form-horizontal", :novalidate=>"novalidate"}) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">Name</label>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Point Scale</label>
+    <div class="controls">
+      <%= f.select :point_scale, point_scale_options %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Velocity</label>
+    <div class="controls">
+      <%= f.text_field :default_velocity, :length => 2, :size => 3 %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Start Date</label>
+    <div class="controls">
+      <%= f.date_select :start_date %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Iteration Start Day</label>
+    <div class="controls">
+      <%= f.select :iteration_start_day, day_name_options %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Iteration Length</label>
+    <div class="controls">
+      <%= f.select :iteration_length, iteration_length_options %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </div>
+<% end %>

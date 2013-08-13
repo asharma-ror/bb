@@ -1,6 +1,10 @@
 require 'open-uri'
 module ApplicationHelper
-
+  def show_messages
+    content_tag :div, nil, { :id => 'messages' } do
+      flash.collect { |index, value| content_tag(:div, value, {:class => "flash-" + index.to_s}) }.join.html_safe
+    end unless flash.blank?
+  end
   # To convert the datetime object in specified zone
   # Basically it will be used to display to auction detail(startdate, enddate) in current user/admin's timezone
   def datetime_in_timezone(date, zone='')

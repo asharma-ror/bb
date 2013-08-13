@@ -26,6 +26,8 @@
           </div>
           <div class="form">
             <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= f.text_field :name, :placeholder => "Name" %>
+              <%= f.text_field :initials, :placeholder => "Name Initial" %>
               <%= f.text_field :email, :placeholder => "Email" %>
               <%= f.password_field :password, :placeholder => "Password" %>
               <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %> 
