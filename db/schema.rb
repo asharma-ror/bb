@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330064133) do
+ActiveRecord::Schema.define(:version => 20130812140942) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "auction_admin_id"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20130330064133) do
     t.string   "token"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "changesets", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "error_traces", :force => true do |t|
@@ -55,11 +62,30 @@ ActiveRecord::Schema.define(:version => 20130330064133) do
 
   add_index "errors", ["project_id"], :name => "index_errors_on_project_id"
 
+  create_table "notes", :force => true do |t|
+    t.text     "note"
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "days"
+    t.string   "projects"
+    t.string   "members"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "stripe_plan_id"
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "key"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "pivotal_token"
     t.integer  "pivotal_project_id"
     t.string   "pivotal_project_name"
@@ -68,6 +94,39 @@ ActiveRecord::Schema.define(:version => 20130330064133) do
     t.string   "campfire_token"
     t.boolean  "campfire_activate"
     t.integer  "campfire_room_id"
+    t.string   "point_scale",          :default => "fibonacci"
+    t.date     "start_date"
+    t.integer  "iteration_start_day",  :default => 1
+    t.integer  "iteration_length",     :default => 1
+    t.integer  "default_velocity",     :default => 10
+  end
+
+  create_table "stories", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "estimate"
+    t.string   "story_type",      :default => "feature"
+    t.string   "state",           :default => "unstarted"
+    t.date     "accepted_at"
+    t.integer  "requested_by_id"
+    t.integer  "owned_by_id"
+    t.integer  "project_id"
+    t.decimal  "position"
+    t.string   "labels"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "stripe_customer_token"
+    t.boolean  "is_active",             :default => false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "canceled_date"
   end
 
   create_table "user_projects", :force => true do |t|
@@ -83,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20130330064133) do
   add_index "user_projects", ["user_id"], :name => "index_user_projects_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                :default => "", :null => false
+    t.string   "email",                                :default => "",   :null => false
     t.string   "encrypted_password",                   :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -93,14 +152,20 @@ ActiveRecord::Schema.define(:version => 20130330064133) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
     t.string   "invitation_token",       :limit => 60
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.string   "name"
+    t.string   "initials"
+    t.string   "locale"
+    t.boolean  "email_delivery",                       :default => true
+    t.boolean  "email_acceptance",                     :default => true
+    t.boolean  "email_rejection",                      :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

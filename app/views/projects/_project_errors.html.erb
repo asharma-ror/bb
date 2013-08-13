@@ -41,7 +41,7 @@
                   <td width="10%"><b><%= project.project_errors.active.size %></b></td>
                   <td width="10%"><b><%= project.project_errors.size %></b></td>
                   <td width="10%">
-                    <%= link_to project_path(project) do %>
+                    <%= link_to settings_project_path(project) do %>
                       <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
                     <% end %>
                   </td>

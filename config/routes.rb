@@ -38,8 +38,28 @@ Cat::Application.routes.draw do
       post 'receiver'
     end
   end
+  
+  get "story/new"
 
   resources :projects do
+    resources :changesets, :only => [:index]
+    resources :stories, :only => [:index, :create, :update, :destroy, :show] do
+      resources :notes, :only => [:index, :create, :show, :destroy]
+      collection do
+        get :done
+        get :in_progress
+        get :backlog
+        get :import
+        post :import_upload
+      end
+      member do
+        put :start
+        put :finish
+        put :deliver
+        put :accept
+        put :reject
+      end
+    end
     member do
       put 'accept'
       delete 'decline'
@@ -47,6 +67,7 @@ Cat::Application.routes.draw do
       post 'pivotal_authenticate'
       post 'pivotal'
       delete 'pivotal_delete'
+      get 'settings'
       get 'pivotal_detail'
       post 'campfire_authenticate'
       delete 'campfire_delete'

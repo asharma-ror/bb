@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   layout "auction"
+
   before_filter :authenticate_user!
   before_filter :check_user_plan
 
@@ -19,6 +20,17 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = current_user.projects.find(params[:id])
+    @story = @project.stories.build
+    
+    respond_to do |format|
+      format.html { render :layout => "project_task" }
+      format.js   { render :json => @project }
+      format.xml  { render :xml => @project }
+    end
+  end
+
+  def settings
     fetch_pivotal_detail
   end
 
@@ -86,7 +98,7 @@ class ProjectsController < ApplicationController
 
   def invitation
     @project = current_user.active_projects.find(params[:id])
-    redirect_to project_path(@project) if params[:invitation][:email].blank?
+    redirect_to settings_project_path(@project) if params[:invitation][:email].blank?
     user = User.where(:email => params[:invitation][:email]).first
     if user.present?
        if user.encrypted_password.blank?

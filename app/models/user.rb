@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+
+  # FIXME - DRY up, repeated in Story model
+  JSON_ATTRIBUTES = ["id", "name", "initials", "email"]
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -6,7 +10,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :name, :initials, :email_delivery, :email_acceptance, 
+                  :email_rejection, :locale
+
+  attr_accessor :was_created
+
+  validates :name, :presence => true
+  validates :initials, :presence => true
+
   # attr_accessible :title, :body
 
   validates :email, :uniqueness => true
@@ -16,5 +28,13 @@ class User < ActiveRecord::Base
   has_many :user_projects, :dependent => :destroy
   has_many :active_projects, :through => :user_projects, :source => :project , :conditions => { "user_projects.status" => true }
   has_many :subscriptions, :dependent => :destroy
+
+  def to_s
+    "#{name} (#{initials}) <#{email}>"
+  end
+
+  def as_json(options = {})
+    super(:only => JSON_ATTRIBUTES)
+  end
 
 end
