@@ -1,4 +1,4 @@
-@import 'jquery_gritter';
-@import 'jquery_tagit';
-@import 'popover';
-@import 'screen';
+@import 'jquery_gritter.css.scss';
+@import 'jquery_tagit.css.scss';
+@import 'popover.css.scss';
+@import 'screen.css.scss';
