@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  
+
   JSON_ATTRIBUTES = [
     "title", "accepted_at", "created_at", "updated_at", "description",
     "project_id", "story_type", "owned_by_id", "requested_by_id", "estimate",
@@ -13,7 +13,6 @@ class Story < ActiveRecord::Base
     "Story Type","Estimate","Current State","Created at","Accepted at",
     "Deadline","Requested By","Owned By","Description","URL"
   ]
-  attr_accessible  :title, :description, :estimate, :story_type, :state, :accepted_at, :requested_by_id, :owned_by_id, :project_id, :position, :labels
 
   belongs_to :project
   validates_presence_of :project
@@ -70,6 +69,9 @@ class Story < ActiveRecord::Base
   STORY_TYPES = [
     'feature', 'chore', 'bug', 'release'
   ]
+
+  attr_accessible :title, :description, :estimate, :story_type, :state, :accepted_at, :requested_by_id, :owned_by_id, :project_id, :position, :labels
+  
   validates :story_type, :inclusion => STORY_TYPES
 
   validates :estimate, :estimate => true, :allow_nil => true

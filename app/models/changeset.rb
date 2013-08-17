@@ -9,6 +9,8 @@ class Changeset < ActiveRecord::Base
 
   default_scope order(:id)
 
+  attr_accessible :project_id, :story_id
+
   scope :since, lambda {|since_id| where("id > ?", since_id)}
 
   protected

@@ -1,10 +1,11 @@
 class StoriesController < ApplicationController
 
+  layout "project_task"
+  
   include ActionView::Helpers::TextHelper
 
   def index
-    @project = current_user.projects.find(params[:project_id],
-                                          :include => {:stories => :notes})
+    @project = current_user.projects.find(params[:project_id], :include => {:stories => :notes})
     @stories = @project.stories
     respond_to do |format|
       format.json { render :json => @stories }

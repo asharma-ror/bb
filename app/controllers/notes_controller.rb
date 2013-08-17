@@ -1,5 +1,7 @@
 class NotesController < ApplicationController
 
+  layout "project_task"
+  
   def index
     @project = current_user.projects.find(params[:project_id])
     @story = @project.stories.find(params[:story_id])

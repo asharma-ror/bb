@@ -1,4 +1,7 @@
 class ChangesetsController < ApplicationController
+
+  layout "project_task"
+  
   def index
     @project = current_user.projects.find(params[:project_id])
     # FIXME extract method to model

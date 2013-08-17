@@ -1,5 +1,7 @@
 class HooksController < ApplicationController
   require 'json'
+  
+  layout "project_task"
 
   def receiver
     data_json = JSON.parse request.body.read

@@ -8,6 +8,8 @@ class Note < ActiveRecord::Base
 
   validates :note, :presence => true
 
+  attr_accessible :user_id, :story_id, :note
+
   # FIXME move to observer
   def create_changeset
     story.changesets.create!
