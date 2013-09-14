@@ -24,12 +24,6 @@
     <%= render :partial => "layouts/header" %>
     <div id="content">
       <div id="content-header" class="content-header-override">
-        <div class="btn-group" style="width: auto;">
-          <a class="btn btn-large tip-bottom" data-original-title="Manage Files"><i class="icon-file"></i></a>
-          <a class="btn btn-large tip-bottom" data-original-title="Manage Users"><i class="icon-user"></i></a>
-          <a class="btn btn-large tip-bottom" data-original-title="Manage Comments"><i class="icon-comment"></i><span class="label label-important">5</span></a>
-          <a class="btn btn-large tip-bottom" data-original-title="Manage Orders"><i class="icon-shopping-cart"></i></a>
-        </div>
         <%= yield :header %>
       </div>
       <div id="breadcrumb">
