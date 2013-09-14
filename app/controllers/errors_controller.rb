@@ -9,6 +9,15 @@ class ErrorsController < ApplicationController
     @project = current_user.projects.find(params[:project_id])
     @exceptions = @project.project_errors.active
   end
+  
+  def tracker
+    project = current_user.projects.first
+    if project
+      redirect_to project
+    else
+      redirect_to new_project_path
+    end
+  end
 
   # get method
   def resolved

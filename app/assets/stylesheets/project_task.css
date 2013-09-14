@@ -1,4 +1,6 @@
-@import 'jquery_gritter.css.scss';
-@import 'jquery_tagit.css.scss';
-@import 'popover.css.scss';
-@import 'screen.css.scss';
+/*
+ *= require jquery_gritter
+ *= require jquery_tagit
+ *= require popover
+ *= require screen
+ */

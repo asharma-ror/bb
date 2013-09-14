@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= "#{@project.name} - " if @project %><%= t('fulcrum') %></title>
+  <title><%= "#{@project.name} - " if @project %><%= "BatBugger" %></title>
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css" %>
   <%= stylesheet_link_tag :project_task %>
@@ -19,6 +19,7 @@
     <li class="root">
     </li>
     <% if current_user %>
+      <li><%= link_to "Batbugger-Errors", exception_path(@project) %></li>
       <li<%= ' class="secondary"'.html_safe if current_user.projects.present? %>>
         <%= link_to Project.model_name.human(:count => 2), root_path %>
         <%- if current_user.projects.present? -%>
@@ -29,7 +30,8 @@
           </ul>
         <%- end %>
       </li>
-      <li><%= link_to current_user.email, edit_user_registration_path %></li>
+      <li><%#= link_to current_user.email, edit_user_registration_path %></li>
+      <li><%= link_to "Exceptions", exception_path(@project) %></li>
       <li><%= link_to t('log out'), destroy_user_session_path,
                       :method => :delete %></li>
     <% else %>

@@ -22,32 +22,38 @@
                 <th>Total</th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <% @projects.each_with_index do |project, index| %>
               <tbody>
                 <tr>
-                  <td>
+                  <td align="center" valign="middle">
                      <%= index + 1%>
                   </td>
-                  <td width="40%">
+                  <td align="center" valign="middle" width="30%">
                     <%= link_to exception_path(project) do %>
                       <span data-original-title="see exceptions" class="tip-top">
                       <%= project.name %>
                       </span>
                     <%end %>
                   </td>
-                  <td width="20%"><b><%= project.key %></b></td>
-                  <td width="10%"><b><%= project.project_errors.active.size %></b></td>
-                  <td width="10%"><b><%= project.project_errors.size %></b></td>
-                  <td width="10%">
+                  <td align="center" valign="middle" width="10%"><b><%= project.key %></b></td>
+                  <td align="center" valign="middle" width="5%"><b><%= project.project_errors.active.size %></b></td>
+                  <td align="center" valign="middle" width="5%"><b><%= project.project_errors.size %></b></td>
+                  <td align="center" valign="middle">
                     <%= link_to settings_project_path(project) do %>
                       <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
                     <% end %>
                   </td>
-                  <td>
+                  <td align="center" valign="middle" >
                     <%= link_to exception_path(project) do %>
                       <button class="btn btn-danger btn-mini">Exceptions</button>
+                    <% end %>
+                  </td>
+                  <td align="center" valign="middle">
+                    <%= link_to project_path(project) do %>
+                      <button class="btn btn-success btn-mini">Ticket-Tracker</button>
                     <% end %>
                   </td>
                 </tr>

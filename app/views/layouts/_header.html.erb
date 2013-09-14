@@ -4,12 +4,12 @@
   </h1>
 </div>
 
-<div id="search">
-  <input type="text" placeholder="Search here..."><button class="tip-right" type="submit" data-original-title="Search"><i class="icon-search icon-white"></i></button>
-</div>
-
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav btn-group">
+    <li class="btn btn-inverse" >
+      <%= link_to '<i class="icon icon-tasks"></i> <span class="text">Tracker</span>'.html_safe, tracker_path %>
+    </li>
+    
     <li class="btn btn-inverse" >
       <%= link_to '<i class="icon icon-home"></i> <span class="text">Home</span>'.html_safe, root_path %>
     </li>
