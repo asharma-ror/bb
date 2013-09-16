@@ -24,19 +24,10 @@ gem 'fastercsv', '1.5.3', :platforms => :ruby_18
 # (using standard csv lib if ruby version is 1.9)
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl', '~> 4.1'
-  gem 'factory_girl_rails'
-  gem 'jasmine', '1.1.0'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'database_cleaner'
-  gem 'shoulda'
-  gem 'shoulda-context'
-  gem 'launchy'
   gem 'debugger', :require => "debugger"
-  gem 'faker'
 end
+
+gem 'exception_notification', :require => 'exception_notifier'
 
 gem 'omniauth'
 gem "omniauth-facebook"
@@ -54,7 +45,7 @@ gem 'geokit-rails3'
 gem 'pivotal-tracker'
 gem 'tinder'
 gem 'stripe'
-gem 'newrelic_rpm'
+
 
 gem 'bootstrap-sass', '~> 2.2.1.1'
 gem 'roadie'

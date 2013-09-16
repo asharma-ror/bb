@@ -51,7 +51,7 @@ Cat::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'batbugger.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'www.batbugger.io' }
   config.action_mailer.delivery_method = :smtp
 
   # Enable threaded mode
@@ -71,6 +71,10 @@ Cat::Application.configure do
   #  :password       => ENV['SENDGRID_PASSWORD']
   #}
 
+  config.middleware.use ExceptionNotifier,
+  :email_prefix => "[BatbuggerIO] ",
+  :sender_address => %{"Exception" <vrishi18@gmail.com>},
+  :exception_recipients => %w{dilip@grepruby.com}
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
