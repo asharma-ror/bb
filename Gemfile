@@ -29,7 +29,7 @@ group :development, :test do
   gem 'debugger', :require => "debugger"
 end
 
-gem 'exception_notification', :require => 'exception_notifier'
+gem 'exception_notification'
 
 gem 'omniauth'
 gem "omniauth-facebook"
