@@ -62,7 +62,7 @@ Cat::Application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners
-  #config.active_support.deprecation = :notify
+  config.active_support.deprecation = :notify
   #ActionMailer::Base.smtp_settings = {
   #  :address        => "smtp.sendgrid.net",
   #  :port           => "25",
@@ -71,11 +71,14 @@ Cat::Application.configure do
   #  :password       => ENV['SENDGRID_PASSWORD']
   #}
 
-  config.middleware.use ExceptionNotifier,
-  :email_prefix => "[BatbuggerIO] ",
-  :sender_address => %{"Exception" <vrishi18@gmail.com>},
-  :exception_recipients => %w{dilip@grepruby.com}
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
+
+Cat::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[BatbuggerIO] ",
+    :sender_address => %{"Exception" <vrishi18@gmail.com>},
+    :exception_recipients => %w{dilip@grepruby.com}
+  }
