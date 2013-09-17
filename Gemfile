@@ -11,6 +11,7 @@ group :assets do
   gem 'uglifier'
   gem 'compass-rails'
   gem 'ejs'
+  #gem 'therubyracer', :platforms => :ruby
 end
 
 gem 'jquery-rails'
@@ -47,6 +48,7 @@ gem 'geokit-rails3'
 gem 'pivotal-tracker'
 gem 'tinder'
 gem 'stripe'
+gem 'activemerchant'
 
 
 gem 'bootstrap-sass', '~> 2.2.1.1'
