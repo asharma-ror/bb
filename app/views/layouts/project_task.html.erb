@@ -19,7 +19,6 @@
     <li class="root">
     </li>
     <% if current_user %>
-      <li><%= link_to "Batbugger-Errors", exception_path(@project) %></li>
       <li<%= ' class="secondary"'.html_safe if current_user.projects.present? %>>
         <%= link_to Project.model_name.human(:count => 2), root_path %>
         <%- if current_user.projects.present? -%>

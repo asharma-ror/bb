@@ -69,10 +69,11 @@
                       <p>Install the gem:</p>
                       <pre>bundle install</pre>
                       <p>Also please create the initializer, that's simple enough. Just put the code below in config/initializers/batbugger.rb</p>
-                      <pre>Batbugger.configure({
-  :api_key => '<%= @project.key.to_s%>',  #[your-api-key]
-  :environment_name => 'production', #[rails-env]
-  })</pre>
+                      <pre>Batbugger.configure do |config|
+  config.api_key = '<%= @project.key.to_s%>'  #[your-api-key]
+  config.secure = false
+  config.environment_name = 'production'  #[rails-env]
+end</pre>
                       <p>URL:</p>
                       <pre><i class="icon-hand-right"></i> <%= link_to "BatBugger-Github: https://github.com/grepruby/batbugger", "https://github.com/grepruby/batbugger", :target=>"_blank"%></pre>
                     </div>

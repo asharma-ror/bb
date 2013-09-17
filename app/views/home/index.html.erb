@@ -1,4 +1,4 @@
-<div id="hero">
+<div id="hero" style="padding-bottom:1px;">
 
 <% unless current_user.blank? %>
   <div class="row-fluid">
@@ -18,68 +18,301 @@
 <% end %>
 
 
-  <div class="container">
-    <!-- starts carousel -->
-    <div class="row animated fadeInDown">
-      <div class="span12">
-        <div id="myCarousel" class="carousel slide">
-          <!-- carousel items -->
-          <div class="carousel-inner">
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+      <!-- starts carousel -->
+      <div class="row">
+        <div class="span12">
+          <div class="carousel slide" id="myCarousel">
+            <!-- carousel items -->
+            <div class="carousel-inner">
               <!-- slide -->
-              <div class="active item slide1">
-                <div class="row">
-                  <div class="span6">
-                    <img src="/assets/slide1.png" alt="slide1" />
-                  </div>
-                  <div class="span4">
-                    <h1>
-                      BatBugger helps you for Rails Application
-                    </h1>
-                    <p>
-                      BatBugger collects your app errors and notify you via email and interact with 3rd party project management tools.
-                    </p>
-                    <a href="users/sign_up" class="btn btn-success btn-large">
-                      SignUp Now!
-                    </a>
-                  </div>
+              <div class="item slide1 active">
+                <div>
+                  <img src="/assets/slide1.png" alt="slide1" />
+                  
                 </div>
               </div>
               <!-- slide -->
-              <div class="item slide3 animated fadeInUpBig">
-                <img src="/assets/slide2.jpg" alt="slide3" />
+              <div class="item slide2">
+                <div>
+                  <div>
+                      <img src="/assets/ticket-tracker-add-story.png" alt="slide3" />
+                  </div>
+                </div>
               </div>
-              <div class="item slide3 animated fadeInUpBig">
-                <img src="/assets/slide3.jpg" alt="slide3" />
-              </div>
-              <div class="item slide3 animated fadeInUpBig">
-                <img src="/assets/slide4.jpg" alt="slide3" />
-              </div>
-              <div class="item slide3 animated fadeInUpBig">
-                <img src="/assets/slide5.jpg" alt="slide3" />
-              </div>
+                         
+              
+              
+            </div>
+            <!-- Carousel nav -->
           </div>
-          <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          <div class="slide_right_content">
+            <h1 style="padding:0 0 15px">
+              Agile project management tool and modern error tracking service.
+            </h1>
+            <p style="0 0 15px">
+            BatBugger keeps all your application's errors/exceptions, projects, data, and people in one place.
+No matter how many projects you have, or how many people you have working on them, BatBugger keeps everything organized,notify you for each and every exception occurred in your projects.
+            </p>
+            <a href="users/sign_up" class="btn btn-success btn-large">
+                      SignUp Now!
+                    </a>
+          </div>
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-    <div class="widget-box">
-      <div class="widget-title">
-        <h3> Our Customers: </h3>
+<div id="features" class="features_page">
+  <div class="container">
+    <div class="features1">
+      <h2 class="section_header">
+          <hr class="left visible-desktop">
+          <span>Features</span>
+          <hr class="right visible-desktop">
+      </h2>
+
+      <div class="row">
+        <div class="span4 feature2">
+            <div class="icon">
+                <i class="cloud"></i></div>
+            <h4>Manage your bugs</h4>
+            <p>
+               We want Zero Bug. We find bugs and help you fix them.
+            </p>
+        </div>
+        <div class="span4 feature2">
+            <div class="icon">
+                <i class="tools"></i></div>
+            <h4>View full error details</h4>
+            <p>
+                We provide you to see full detailed information of bug.
+            </p>
+        </div>
+        <div class="span4 feature2">
+            <div class="icon">
+                <i class="graph"></i></div>
+            <h4>Agile project management tool</h4>
+            <p>- Real-time Collaboration <br/>- Organize by Label</p>
+        </div>
       </div>
-      <div class="widget-content">
-        <ul class="thumbnails">
-          <% (1..84).each do |i| %>
-            <li class="span2">
-              <a href="#" class="thumbnail">
-                <img src="assets/customers/<%= i %>.png" alt="">
-              </a>
-            </li>
-          <% end %>
-        </ul>
+
+      <div class="row">
+        <div class="span4 feature2">
+            <div class="icon">
+                <i class="mobile"></i></div>
+            <h4>Errors by email</h4>
+            <p>
+              You will get error information via email as well.
+            </p>
+        </div>
+        <div class="span4 feature2">
+          <div class="icon">
+              <i class="lab"></i></div>
+          <h4>Campfire notifications</h4>
+          <p>
+              You will get campfire notification.
+          </p>
+        </div>
+        <div class="span4 feature2">
+          <div class="icon">
+              <i class="secure"></i></div>
+          <h4>PivotalTracker notifications</h4>
+          <p>
+            You will get pivotal tracker activities.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</div>
+
+
+
+
+<style>
+
+.carousel {
+    float: left;
+    line-height: 1;
+    margin-bottom: 20px;
+    position: relative;
+}
+.carousel-inner {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.carousel-inner > .item {
+    -moz-transition: left 0.6s ease-in-out 0s;
+    display: none;
+    position: relative;
+}
+.carousel-inner > .item > img {
+    display: block;
+    line-height: 1;
+}
+.carousel-inner > .active, .carousel-inner > .next, .carousel-inner > .prev {
+    display: block;
+}
+.carousel-inner > .active {
+    left: 0;
+}
+.carousel-inner > .next, .carousel-inner > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.carousel-inner > .next {
+    left: 100%;
+}
+.carousel-inner > .prev {
+    left: -100%;
+}
+.carousel-inner > .next.left, .carousel-inner > .prev.right {
+    left: 0;
+}
+.carousel-inner > .active.left {
+    left: -100%;
+}
+.carousel-inner > .active.right {
+    left: 100%;
+}
+.carousel-control {
+    background: none repeat scroll 0 0 #222222;
+    border: 3px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    color: #FFFFFF;
+    font-size: 60px;
+    font-weight: 100;
+    height: 40px;
+    left: 15px;
+    line-height: 30px;
+    margin-top: -20px;
+    opacity: 0.5;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    width: 40px;
+}
+.carousel-control.right {
+    left: auto;
+    right: 15px;
+}
+.carousel-control:hover {
+    color: #FFFFFF;
+    opacity: 0.9;
+    text-decoration: none;
+}
+.carousel-caption {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+}
+.carousel-caption h4, .carousel-caption p {
+    color: #FFFFFF;
+    line-height: 20px;
+}
+.carousel-caption h4 {
+    margin: 0 0 5px;
+}
+.carousel-caption p {
+    margin-bottom: 0;
+}
+.slide_right_content {
+    float: right;
+    width: 402px;
+}
+.slide_right_content h1 {
+    color: #06112C;
+    margin: 0;
+    padding: 46px 0 30px;
+    text-shadow: 1px 1px 1px #9FB9D4;
+}
+.slide_right_content h2 {
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    text-shadow: 1px 1px 1px #193054;
+    text-transform: uppercase;
+}
+.slide_right_content h2 span {
+    color: #40DB49;
+}
+.slide_right_content ul {
+    list-style: none outside none;
+    margin: 3px 0 0;
+    padding: 0 0 26px;
+}
+.slide_right_content ul li {
+    color: #D2E0E3;
+    padding: 2px 0 5px 28px;
+}
+.slide_right_content input[type="button"], .slide_right_content input[type="submit"] {
+    background-color: #FA0199;
+    background-image: -moz-linear-gradient(center top , #FA0199, #C20076);
+    background-repeat: repeat-x;
+    border: 8px solid #22466C;
+    border-radius: 8px 8px 8px 8px;
+    color: #FFFFFF;
+    font: bold 20px Arial,Helvetica,sans-serif;
+    padding: 12px 33px;
+    text-shadow: 1px 1px 1px #190F34;
+}
+
+</style>
