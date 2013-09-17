@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
   
   def is_project_admin?(project)
-    self == user_projects.where(project_id: project).creator
+    self == user_projects.where(project_id: project).creator.first.try(:user)
   end
 
 end
