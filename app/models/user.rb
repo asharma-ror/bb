@@ -36,5 +36,9 @@ class User < ActiveRecord::Base
   def as_json(options = {})
     super(:only => JSON_ATTRIBUTES)
   end
+  
+  def is_project_admin?(project)
+    self == user_projects.where(project_id: project).creator
+  end
 
 end

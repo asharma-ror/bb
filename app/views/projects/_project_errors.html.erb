@@ -58,7 +58,7 @@
                     <% end %>
                   </td>
                   <td align="center" valign="middle">
-                    <%= render :partial => "project_subscription", :locals=> {:project=> project} %>
+                    <%= render :partial => "project_subscription", :locals=> {:project=> project} if current_user.is_project_admin?(project)%>
                   </td>
                 </tr>
               </tbody>

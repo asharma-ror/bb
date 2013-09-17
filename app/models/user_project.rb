@@ -4,4 +4,6 @@ class UserProject < ActiveRecord::Base
   attr_accessible :role, :user_id, :project_id, :status
 
   scope :pending, where(:status => false)
+  scope :creator, where(:role => 1)
+  
 end

@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        @project.user_projects.create(:user_id => current_user.id, :status => true)
+        @project.user_projects.create(:user_id => current_user.id, :status => true, :role => 1)
         format.html { redirect_to page_path(:id => "pricing", :project=> @project), notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
