@@ -51,7 +51,7 @@ Cat::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'batbugger.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'www.batbugger.io' }
   config.action_mailer.delivery_method = :smtp
 
   # Enable threaded mode
@@ -62,7 +62,7 @@ Cat::Application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners
-  #config.active_support.deprecation = :notify
+  config.active_support.deprecation = :notify
   #ActionMailer::Base.smtp_settings = {
   #  :address        => "smtp.sendgrid.net",
   #  :port           => "25",
@@ -84,3 +84,10 @@ Cat::Application.configure do
       ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
 end
+
+Cat::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[BatbuggerIO] ",
+    :sender_address => %{"Exception" <vrishi18@gmail.com>},
+    :exception_recipients => %w{dilip@grepruby.com}
+  }
