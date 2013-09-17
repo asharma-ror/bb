@@ -5,6 +5,6 @@
 <%- end -%>
 
 <%= link_to_unless_current Story.model_name.human(:count => 2), project_path(project) %> |
-<%= link_to_unless_current t('edit'), edit_project_path(project) %> |
-<%= link_to_unless_current t('import'), import_project_stories_path(project) %> |
-<%= link_to t('export'), project_stories_path(project, :format => :csv) %>
+<%= link_to_unless_current t('edit'), edit_project_path(project) %> 
+<%#= link_to_unless_current t('import'), import_project_stories_path(project) %>
+<%#= link_to t('export'), project_stories_path(project, :format => :csv) %>
