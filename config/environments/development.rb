@@ -45,4 +45,15 @@ Cat::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+    :login => PAYPAL["development"]["login"],
+    :password => PAYPAL["development"]["password"],
+    :signature => PAYPAL["development"]["signature"]
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

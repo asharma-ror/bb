@@ -1,0 +1,6 @@
+<% if project.is_subscripted?%>
+  <%= link_to "Unsubscribe", unsubscribe_subscriptions_path(:project => project), :confirm=> 'Are you sure?' ,:class=>"btn btn-warning btn-mini" %>
+<% else%>
+  <%= (link_to "Subscription", page_path(:id => "pricing", :project=> project), :class=>"btn btn-primary btn-mini")%>
+  <a data-original-title="<%= project.remaining_trail%> days remaining for trail." class="btn btn-mini tip-bottom" href="<%=page_path(:id => "pricing", :project=> project)%>"><i class="icon-warning-sign"></i></a>
+<% end %>

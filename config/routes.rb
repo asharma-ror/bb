@@ -1,7 +1,5 @@
 Cat::Application.routes.draw do
-  resources :subscriptions, :only => [:new, :create]
-
-
+  
   match '/v1/notices' => 'exceptions#exception'
 
   devise_for :users
@@ -77,6 +75,14 @@ Cat::Application.routes.draw do
     
     collection do
       get 'get_project_errors'
+    end
+  end
+
+  resources :subscriptions do
+    collection do
+      get 'express_paypal'
+      get 'complete'
+      get 'unsubscribe'
     end
   end
 

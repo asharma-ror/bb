@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   layout "auction"
 
+  before_filter :check_project_subscription, :only=> [:show, :edit, :settings, :fetch_pivotal_detail, :get_project_errors, :pivotal_detail]
   before_filter :authenticate_user!
   before_filter :check_user_plan
 
@@ -58,7 +59,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         @project.user_projects.create(:user_id => current_user.id, :status => true)
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to page_path(:id => "pricing", :project=> @project), notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

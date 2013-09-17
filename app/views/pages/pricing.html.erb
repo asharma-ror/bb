@@ -13,13 +13,9 @@
     
     <div class="row">
       <div class="span12">
-        <div class="price_wrapper pro" style="height: 460px;">
-          <div class="header">
-              <span>Basic:</span>
-              <div class="price">
-                  <span>Free</span>
-                  Beta Version
-              </div>
+        <div class="price_wrapper pro" style="height: 400px;">
+          <div class="header" style="height: 44px;">
+              <span>Basic: $5.00</span>
           </div>
           <div class="section">
             <h3>Unlimited projects and work with 3rd party project management tools.</h3>
@@ -65,11 +61,22 @@
             </li>
             
             </ul>
-            <%# if current_user %>
-              <%#= link_to "Get Plan", new_subscription_path(:plan_id => "1"), :class=>"btn" %>
-            <%# else %>
-              <!--<a href="/users/sign_up" class="btn">SignUp Now</a>-->
-            <%# end %>
+            <% if current_user %>
+              <div class="row">
+                <div class="span2">
+                  <%unless params[:project].blank?%>
+                    <%= link_to "Subscription", express_paypal_subscriptions_path(:project=> params[:project], :plan => Plan.first.id), :class=>"btn btn-primary btn-mini", :style=>" position: inherit !important;" %>
+                  <%else%>
+                    <%= link_to "Select Project", projects_path, :class=>"btn btn-info btn-mini", :style=>" position: inherit !important;" %>
+                  <%end%>  
+                </div>
+                <div class="span1">
+                  <%= (link_to "Skip", projects_path, :class=>"btn btn-mini", :style=>" position: inherit !important;")%>
+                </div>  
+              </div>
+            <% else %>
+              <a href="/users/sign_up" class="btn">SignUp Now</a>
+            <% end %>
           </div>
         </div>
       </div>

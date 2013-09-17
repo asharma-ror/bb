@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
     "default_velocity"
   ]
   JSON_METHODS = ["last_changeset_id", "point_values"]
+  TRAIL_DAYS = 10.days
 
   # These are the valid point scalse for a project.  These represent
   # the set of valid points estimate values for a story in this project.
@@ -17,6 +18,7 @@ class Project < ActiveRecord::Base
     :message => "%{value} is not a valid estimation scheme"
 
   ITERATION_LENGTH_RANGE = (1..4)
+  
   validates_numericality_of :iteration_length,
     :greater_than_or_equal_to => ITERATION_LENGTH_RANGE.min,
     :less_than_or_equal_to => ITERATION_LENGTH_RANGE.max, :only_integer => true,
@@ -35,6 +37,7 @@ class Project < ActiveRecord::Base
                             :only_integer => true
 
   has_many :users, :dependent => :destroy, :through => :user_projects
+  has_one :subscription, :dependent => :destroy
 
   attr_accessible :name, :key, :pivotal_token, :pivotal_project_id, :pivotal_project_name, :campfire_room, :campfire_subdomain, :campfire_token, :campfire_activate, :campfire_room_id, :point_scale, :start_date, :iteration_start_day, :iteration_length, :default_velocity
 
@@ -109,4 +112,16 @@ class Project < ActiveRecord::Base
     end while self.class.exists?(:key => key)
   end
 
+  def is_subscripted?
+    subscription = self.subscription
+    return (!subscription.blank? && subscription.is_active == true) ? true : false
+  end
+  
+  def in_trail_duration?
+    (self.created_at + TRAIL_DAYS < Time.now.utc) ? true : false
+  end
+
+  def remaining_trail
+    (((self.created_at + TRAIL_DAYS) - Time.now.utc)/1.days).to_i
+  end
 end

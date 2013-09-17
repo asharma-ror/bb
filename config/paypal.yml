@@ -1,0 +1,18 @@
+common: &default_settings
+  login: "betbugger_api1.mailinator.com"
+  password: "1379162741"
+  signature: "AQU0e5vuZCvSg-XJploSa.sGUDlpAgVpLoCBsNGpTKOapuNz4vyOA806"
+
+development:
+  <<: *default_settings
+test:
+  <<: *default_settings
+demo:
+  <<: *default_settings
+staging:
+  <<: *default_settings
+
+production:
+  login: "betbugger_api1.mailinator.com"
+  password: "1379162741"
+  signature: "AQU0e5vuZCvSg-XJploSa.sGUDlpAgVpLoCBsNGpTKOapuNz4vyOA806"

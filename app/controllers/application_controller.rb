@@ -81,4 +81,25 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_project_subscription
+    project_id = params[:id].blank? ? params[:project_id] : params[:id]
+    project = current_user.active_projects.find(project_id)
+    subscription = project.subscription
+    unless subscription.blank?
+      if subscription.is_active == true
+        return true
+      else
+        flash[:notice] = "Your subscription has beed deactivated. please make a subscription now"
+        redirect_to page_path(:id => "pricing", :project=> project)
+      end
+    else
+      if project.in_trail_duration?
+        flash[:notice] = "Your trail period has beed finished. please make a subscription now"
+        redirect_to page_path(:id => "pricing", :project=> project)
+      else
+        return true
+      end
+    end
+  end
+
 end

@@ -1,8 +1,9 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :plan_id, :user_id, :end_date, :start_date, :is_active, :canceled_date, :stripe_customer_token
+  attr_accessible :plan_id, :user_id, :end_date, :start_date, :is_active, :canceled_date, :stripe_customer_token, :project_id, :payment_profile_id
   attr_accessor :stripe_card_token
-  has_one :plan, :dependent => :destroy
+  belongs_to :plan
   belongs_to :user
+  belongs_to :project
 
   def save_with_payment_on_stripe(user, card_token, plan_id)
     if valid?
@@ -21,4 +22,15 @@ class Subscription < ActiveRecord::Base
     false
   end
 
+  def self.save_paypal_profile(recurring_profile, project_id, plan_id, user)
+     project = user.active_projects.find(project_id)
+     subscription = project.subscription
+     subscription = subscription.blank? ? self.new : subscription
+     subscription.is_active = true
+     subscription.start_date = recurring_profile.params["timestamp"]
+     subscription.payment_profile_id = recurring_profile.params["profile_id"]
+     subscription.project_id = project.id
+     subscription.plan_id = plan_id
+     subscription.save!
+  end
 end

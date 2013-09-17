@@ -23,6 +23,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <% @projects.each_with_index do |project, index| %>
@@ -55,6 +56,9 @@
                     <%= link_to project_path(project) do %>
                       <button class="btn btn-success btn-mini">Ticket-Tracker</button>
                     <% end %>
+                  </td>
+                  <td align="center" valign="middle">
+                    <%= render :partial => "project_subscription", :locals=> {:project=> project} %>
                   </td>
                 </tr>
               </tbody>
