@@ -339,7 +339,7 @@ Fulcrum.StoryView = Fulcrum.FormView.extend({
       this.$el.append(
         this.makeFormControl(function(div) {
           $(div).append(this.label("description", "Description"));
-          $(div).append('<br/>');
+          //$(div).append('<br/>');
           if(this.model.isNew() || this.model.get('editingDescription')) {
             $(div).append(this.textArea("description"));
           } else {
@@ -519,7 +519,7 @@ Fulcrum.StoryView = Fulcrum.FormView.extend({
       var $div = $(div);
       if (content.label) {
         $div.append(this.label(content.name));
-        $div.append('<br/>');
+        //$div.append('<br/>');
       }
       $div.append(content.control);
     }
