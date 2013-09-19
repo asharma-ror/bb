@@ -182,6 +182,8 @@ GEM
       railties (= 3.2.13)
     rails-i18n (0.7.4)
       i18n (~> 0.5)
+    rails_config (0.3.3)
+      activesupport (>= 3.0)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -273,6 +275,7 @@ DEPENDENCIES
   pivotal-tracker
   rails (= 3.2.13)
   rails-i18n
+  rails_config
   rmagick
   roadie
   sass-rails (~> 3.2.0)

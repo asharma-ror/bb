@@ -1,0 +1,7 @@
+rdf_comment:
+  apply_juvia?:  true
+  site_key: 'de6njq4oqblvxil4zfxdyonjdfniqq2'
+  url: 'http://localhost:3001'
+  asset_host: 'http://localhost:3001'
+  secret_key: '123456'
+

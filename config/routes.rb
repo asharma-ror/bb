@@ -60,6 +60,7 @@ Cat::Application.routes.draw do
       end
     end
     member do
+      get 'project_camp'
       put 'accept'
       delete 'decline'
       post 'invitation'

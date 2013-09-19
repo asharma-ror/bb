@@ -49,6 +49,7 @@ gem 'pivotal-tracker'
 gem 'tinder'
 gem 'stripe'
 gem 'activemerchant'
+gem 'rails_config'
 
 
 gem 'bootstrap-sass', '~> 2.2.1.1'

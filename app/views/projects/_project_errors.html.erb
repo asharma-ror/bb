@@ -24,6 +24,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <% @projects.each_with_index do |project, index| %>
@@ -55,6 +56,11 @@
                   <td align="center" valign="middle">
                     <%= link_to project_path(project) do %>
                       <button class="btn btn-success btn-mini">Ticket-Tracker</button>
+                    <% end %>
+                  </td>
+                  <td align="center" valign="middle" >
+                    <%= link_to project_camp_project_path(project) do %>
+                      <button class="btn btn-success btn-mini">Project-Camp</button>
                     <% end %>
                   </td>
                   <td align="center" valign="middle">

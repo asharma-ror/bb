@@ -1,0 +1,5 @@
+.chat-content {height:auto;}
+.chat-message .input-box{ margin-right: 0px;}
+.chat-message .juvia-data .juvia-field .juvia-input, .juvia-textarea-field{float: left; width: 93%;}
+/*.chat-message input[type="text"] {width: 97%;}*/
+.chat-message .juvia-textarea-field textarea{height: 20px; width: 97%;resize: none}
