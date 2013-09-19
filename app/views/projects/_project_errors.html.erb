@@ -40,22 +40,23 @@
                       </span>
                     <%end %>
                   </td>
-                  <td align="center" valign="middle" width="10%"><b><%= project.key %></b></td>
-                  <td align="center" valign="middle" width="5%"><b><%= project.project_errors.active.size %></b></td>
-                  <td align="center" valign="middle" width="5%"><b><%= project.project_errors.size %></b></td>
-                  <td align="center" valign="middle">
+                  <td width="10%"><b><%= project.key %></b></td>
+                  <td width="5%"><b><%= project.project_errors.active.size %></b></td>
+                  <td width="5%"><b><%= project.project_errors.size %></b></td>
+                  <td width="10%">
+
                     <%= link_to settings_project_path(project) do %>
                       <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
                     <% end %>
                   </td>
-                  <td align="center" valign="middle" >
-                    <%= link_to exception_path(project) do %>
-                      <button class="btn btn-danger btn-mini">Exceptions</button>
+                  <td width="20%">
+                    <%= link_to project_path(project) do %>
+                      <button class="btn btn-primary btn-mini"><i class="icon-eye-open"></i> Ticket-Tracker</button>
                     <% end %>
                   </td>
-                  <td align="center" valign="middle">
-                    <%= link_to project_path(project) do %>
-                      <button class="btn btn-success btn-mini">Ticket-Tracker</button>
+                  <td>
+                    <%= link_to exception_path(project) do %>
+                      <button class="btn btn-danger btn-mini">Exceptions</button>
                     <% end %>
                   </td>
                   <td align="center" valign="middle" >

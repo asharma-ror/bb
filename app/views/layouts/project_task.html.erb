@@ -4,6 +4,8 @@
   <title><%= "#{@project.name} - " if @project %><%= "BatBugger" %></title>
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "auction_admin_application", :media => "all" %>
   <%= stylesheet_link_tag :project_task %>
   <%= javascript_include_tag :project_task %>
   <script type="text/javascript">
@@ -13,45 +15,29 @@
   </script>
 </head>
 <body>
+  <%= render :partial => "layouts/header" %>
+  <div id="content">
+      <div id="content-header" class="content-header-override">
+        <%= yield :header %>
+      <div id="breadcrumb">
+        <%= link_to settings_project_path(@project) do %>
+          <h4> <%= @project.name %></h4>
+        <% end %>
+        <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <%= link_to 'Projects', projects_path %>
+        <%= link_to 'Tracker', project_path(@project) , :class => "current"  %>
+      </div>
+      </div>
+      
+      <div id="title_bar">
+        <%= yield :title_bar %>
+      </div>
+      <div id="main">
+        <%= show_messages %>
 
-<div id="header">
-  <ul id="primary-nav">
-    <li class="root">
-    </li>
-    <% if current_user %>
-      <li<%= ' class="secondary"'.html_safe if current_user.projects.present? %>>
-        <%= link_to Project.model_name.human(:count => 2), root_path %>
-        <%- if current_user.projects.present? -%>
-          <ul>
-            <%- current_user.projects.each do |project| -%>
-              <li><%= link_to project, project %></li>
-            <%- end -%>
-          </ul>
-        <%- end %>
-      </li>
-      <li><%#= link_to current_user.email, edit_user_registration_path %></li>
-      <li><%= link_to "Exceptions", exception_path(@project) %></li>
-      <li><%= link_to t('log out'), destroy_user_session_path,
-                      :method => :delete %></li>
-    <% else %>
-      <li><%= link_to t('log in'), new_user_session_path %></li>
-      <%- unless Fulcrum::Application.config.fulcrum.disable_registration %>
-      <li><%= link_to t('sign up'), new_user_registration_path %></li>
-      <% end -%>
-    <% end %>
-  </ul>
-</div>
-
-<div id="title_bar">
-  <%= yield :title_bar %>
-</div>
-
-<div id="main">
-  <%= show_messages %>
-
-  <%= yield %>
-</div>
-
+        <%= yield %>
+      </div>
+    </div>
 </body>
 </html>
 

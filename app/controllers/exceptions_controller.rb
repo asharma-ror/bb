@@ -1,5 +1,7 @@
 class ExceptionsController < ApplicationController
 
+  skip_before_filter :authenticate_user!
+
   def exception
     project = Project.find_by_key(request.headers["X-API-Key"])
     application_error = params["error"]["backtrace"].select{|per| per["file"].include?("PROJECT_ROOT")}
@@ -45,7 +47,7 @@ class ExceptionsController < ApplicationController
         BatbuggerMailer.exception(user_project,error).deliver  if user_project.status
       end
     end
-    render :nothing => true, :status => 200, :content_type => 'text/html'
+    render :json => {}.to_json, :status => 200
   end
 
 end
