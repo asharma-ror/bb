@@ -198,6 +198,10 @@ class ProjectsController < ApplicationController
     @project_invitations = current_user.user_projects.pending
     render :partial => "project_errors", :layout => false
   end
+  
+  def project_camp
+    @project = current_user.active_projects.find(params[:id])
+  end
 
   private
 
