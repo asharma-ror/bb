@@ -22,6 +22,7 @@
                 <th>Total</th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <% @projects.each_with_index do |project, index| %>
@@ -37,12 +38,18 @@
                       </span>
                     <%end %>
                   </td>
-                  <td width="20%"><b><%= project.key %></b></td>
+                  <td width="10%"><b><%= project.key %></b></td>
                   <td width="10%"><b><%= project.project_errors.active.size %></b></td>
                   <td width="10%"><b><%= project.project_errors.size %></b></td>
+
                   <td width="10%">
                     <%= link_to settings_project_path(project) do %>
                       <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
+                    <% end %>
+                  </td>
+                  <td width="10%">
+                    <%= link_to project_path(project) do %>
+                      <button class="btn btn-primary btn-mini"><i class="icon-eye-open"></i> Tracker</button>
                     <% end %>
                   </td>
                   <td>

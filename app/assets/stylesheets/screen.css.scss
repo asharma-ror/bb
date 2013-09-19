@@ -38,78 +38,37 @@ $aluminium-4:   #888a85;
 $aluminium-5:   #555753;
 $aluminium-6:   #2e3436;
 
+* {
+  outline:none !important;
+  -moz-outline: none !important;
+}
+/* Main */
 body {
-  margin: 0;
-  padding: 0;
+  overflow-x: hidden !important;
+  margin-top: -9px !important;
+  background-color: #444444 !important;
 }
 
-a img {
-  border: 0;
+#user-nav > ul > li > a > i, #sidebar li a i {
+  width:14px;
 }
 
-#header {
-  background: $darkgrey;
-  @include background(linear-gradient(top, $darkgrey, $darkgrey*0.75));
-  border-bottom: 1px solid $darkgrey*0.7;
-  @include box-shadow(0 1px 2px #aaaaaa);
-  text-shadow: black 0 1px 0;
-  position: relative;
-  z-index: 900;
+#content {
+  margin-left: 136px;
 }
 
-ul#primary-nav {
-  text-align: right;
-  background-image: image-url('logo.png');
-  background-repeat: no-repeat;
-  background-position: 13px 6px;
-  margin: 0;
-  padding: 1em 1em 1em 40px;
-  color: white;
+#sidebar > ul {
+  width: 136px;
 }
-ul#primary-nav li {
-  padding: 0 0.5em;
-  display: inline;
-}
-ul#primary-nav li a {
-  color: white;
-  text-decoration: none;
-}
-ul#primary-nav li.root {
-  float: left;
-  font-size: large;
-}
-ul#primary-nav li.secondary {
-  position: relative;
-  @include icons-sprite(collapse, false, 0px, 6px);
-  background-color: #333;
-  background-position-x:right;
-  padding: 0.4em 18px 0.4em 0.4em;
-  @include border-radius(5px);
-  text-shadow: black 0 1px 0;
-}
-ul#primary-nav li.secondary ul {
-  visibility: hidden;
-}
-ul#primary-nav li.secondary:hover ul {
-  visibility: visible;
-}
-ul#primary-nav li.secondary ul {
-  padding: 0.3em;
-  position: absolute;
-  left: 0; top: 1.7em;
-  background-color: #333;
-  @include border-radius(0 5px 5px 5px);
-}
-ul#primary-nav li.secondary ul li {
-  white-space: nowrap;
-  text-align: left;
-  display: block;
+
+#content {
+  padding: 0px !important;
 }
 
 #title_bar {
-  background: #efefef;
-  @include background(linear-gradient(top, #efefef, #dfe1e2));
-  @include box-shadow(0 1px 2px #aaaaaa);
+  //background: #efefef;
+  //@include background(linear-gradient(top, #efefef, #dfe1e2));
+  //@include box-shadow(0 1px 2px #aaaaaa);
   text-shadow: white 0 1px 0;
   border-bottom: 1px solid #ededed;
   padding: 5px 10px 3px 10px;
@@ -120,6 +79,7 @@ ul#primary-nav li.secondary ul li {
   position: relative;
   margin: 0;
   padding: 10px 1em;
+  margin: -28px 0 0;
 
   div.velocity {
     font-size: 1.6em;
@@ -211,6 +171,7 @@ table.stories {
   width: 100%;
   height: 100%;
   border-spacing: 5px 0;
+  border-collapse: inherit;
 }
 
 table.stories td {
@@ -258,6 +219,11 @@ div.story:hover {
   background-color: #ddd;
 }
 
+div.story select {
+    height: 23px;
+    padding: 1px;
+}
+
 div.story.editing, div.story.editing:hover {
   background-color: adjust-lightness($butter-1, 20);
   color: $aluminium-6;
@@ -269,10 +235,14 @@ div.story.bug.accepted,
 div.story.chore.accepted{
   background-color: adjust-lightness($chameleon-1, 40);
 }
-div.story input[type=text],
-div.story textarea {
-  width: 99%;
+div.story input[type=text] {
+  width: 75%;
 }
+
+div.story textarea {
+  width: 94%;
+}
+
 div.story textarea {
   height: 50px;
 }
