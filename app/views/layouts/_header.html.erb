@@ -7,11 +7,11 @@
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav btn-group">
     <li class="btn btn-inverse" >
-      <%= link_to '<i class="icon icon-tasks"></i> <span class="text">Tracker</span>'.html_safe, tracker_path %>
+      <%= link_to '<i class="icon icon-tasks"></i> <span class="text">Tracker</span>'.html_safe, (@project ? project_path(@project) : tracker_path) %>
     </li>
     
     <li class="btn btn-inverse" >
-      <%= link_to '<i class="icon icon-home"></i> <span class="text">Home</span>'.html_safe, root_path %>
+      <%= link_to '<i class="icon icon-home"></i> <span class="text">Home</span>'.html_safe, (current_user ? projects_path : root_path) %>
     </li>
 
     <li class="btn btn-inverse" >
@@ -29,4 +29,4 @@
   </ul>
 </div>
 
-<%= render :partial => "layouts/admin_left_header"%>
+<%= render :partial => "layouts/admin_left_header" unless params[:controller] == "projects" and params[:action] == "show"%>

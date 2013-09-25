@@ -910,8 +910,8 @@ a:hover {
         float: right;
 }
 #chat-messages-inner p {
-    padding: 10px;
-    margin: 10px 0;
+    padding: 0 10px;
+    margin: 5px;
 }
 #chat-messages-inner p img {
     display: inline-block;
@@ -927,7 +927,7 @@ a:hover {
     box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.05);
     display: block;
     margin-left: 40px;
-    padding: 10px;
+    padding: 2px 10px;
     position: relative;
 }
 #chat-messages-inner p.offline span {

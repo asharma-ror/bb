@@ -36,6 +36,11 @@ module ApplicationHelper
         content_tag(:ul, content_tag(:a,'&times'.html_safe, :class=>"close", 'data-dismiss'=>"alert") + list_items.join.html_safe, :class=>"set_err_msg" )
       end
     end
+  end
+  
+  def avatar_url(user)
+    gravatar_id = Digest::MD5::hexdigest(user.email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}.png"
   end  
   
 end

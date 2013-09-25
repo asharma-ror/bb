@@ -30,10 +30,10 @@
             <% @projects.each_with_index do |project, index| %>
               <tbody>
                 <tr>
-                  <td align="center" valign="middle">
+                  <td align="center" valign="middle" width="1%">
                      <%= index + 1%>
                   </td>
-                  <td align="center" valign="middle" width="30%">
+                  <td align="center" valign="middle" width="10%">
                     <%= link_to exception_path(project) do %>
                       <span data-original-title="see exceptions" class="tip-top">
                       <%= project.name %>
@@ -41,30 +41,30 @@
                     <%end %>
                   </td>
                   <td width="10%"><b><%= project.key %></b></td>
-                  <td width="5%"><b><%= project.project_errors.active.size %></b></td>
-                  <td width="5%"><b><%= project.project_errors.size %></b></td>
+                  <td width="1%"><b><%= project.project_errors.active.size %></b></td>
+                  <td width="1%"><b><%= project.project_errors.size %></b></td>
                   <td width="10%">
 
                     <%= link_to settings_project_path(project) do %>
                       <button class="btn btn-mini"><i class="icon-wrench"></i> Settings</button>
                     <% end %>
                   </td>
-                  <td width="20%">
+                  <td width="10%">
                     <%= link_to project_path(project) do %>
                       <button class="btn btn-primary btn-mini"><i class="icon-eye-open"></i> Ticket-Tracker</button>
                     <% end %>
                   </td>
-                  <td>
+                  <td width="10%">
                     <%= link_to exception_path(project) do %>
                       <button class="btn btn-danger btn-mini">Exceptions</button>
                     <% end %>
                   </td>
-                  <td align="center" valign="middle" >
+                  <td align="center" valign="middle" width="10%" >
                     <%= link_to project_camp_project_path(project) do %>
-                      <button class="btn btn-success btn-mini">Project-Camp</button>
+                      <button class="btn btn-success btn-mini">Project-Chat</button>
                     <% end %>
                   </td>
-                  <td align="center" valign="middle">
+                  <td align="center" valign="middle" width="10%">
                     <%= render :partial => "project_subscription", :locals=> {:project=> project} if current_user.is_project_admin?(project)%>
                   </td>
                 </tr>

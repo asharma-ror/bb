@@ -4,6 +4,9 @@
 label, input, button, select, textarea {
   line-height: 14px;
 }
+#content{
+  margin-left: 0px;
+}
 </style>
 <script type="text/javascript">
 $(function() {
@@ -83,8 +86,9 @@ $(function() {
              | <a id="add_story" href="#"><%= t('add story') %></a>
 <% end %>
 
-<% content_for :header do %>
-  
+
+<% content_for :current_breadcrumb do %>
+  <%= link_to 'Tracker', project_path(@project) , :class => "current"  %>
 <% end %>
 
 <table class="stories" width="100%">

@@ -201,6 +201,7 @@ class ProjectsController < ApplicationController
   
   def project_camp
     @project = current_user.active_projects.find(params[:id])
+    render :layout => "chat_server"
   end
 
   private

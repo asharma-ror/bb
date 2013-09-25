@@ -1,47 +1,35 @@
 <div class="row-fluid"> 
   <div class="span12">
-    <div class="alert alert-success">This is an example of support chat. Feel free to write something.<a data-dismiss="alert" class="close" href="#">×</a></div>
     <div class="widget-box widget-chat">
       <div class="widget-title">
         <span class="icon">
           <i class="icon-comment"></i>
         </span>
-        <h5>Support chat</h5>
+        <h5>Chat</h5>
       </div>
       <div class="widget-content nopadding">
-        <div class="chat-content panel-left">                   
-           <div id="chat-messages" class="chat-messages">
-            <div id="chat-messages-inner"><p class="user-neytiri" id="msg-1" style="display: block;"><img alt="" src="/assets/demo/av2.jpg"><span class="msg-block"><strong>Neytiri</strong> <span class="time">- 15:13</span><span class="msg">I have a problem. My computer not work!</span></span></p><p class="user-you" id="msg-2" style="display: block;"><img alt="" src="/assets/demo/av1.jpg"><span class="msg-block"><strong>You</strong> <span class="time">- 15:13</span><span class="msg">Hi</span></span></p><p class="user-cartoon-man" id="msg-3" style="display: block;"><img alt="" src="/assets/demo/av3.jpg"><span class="msg-block"><strong>Cartoon Man</strong> <span class="time">- 15:13</span><span class="msg">Turn off and turn on your computer then see result.</span></span></p><p id="msg-4" class="offline" style="display: block;"><span>User Neytiri left the chat</span></p></div>
-           </div>									
-           <div class="chat-message well">
-            <button class="btn btn-success">Send</button>  
-            <span class="input-box">
-              <input type="text" id="msg-box" name="msg-box">
-            </span>										                  
-           </div>                   
+        <div class="chat-content panel-left" id="chat-box">
+          <b>Loading chat...</b></br>
+<img width="16" height="11" style="margin:0 0 3px 5px" src="data:image/gif;base64,R0lGODlhEAALAPQAAP///z2LqeLt8dvp7u7090GNqz2LqV+fuJ/F1IW2ycrf51aatHWswaXJ14i4ys3h6FmctUCMqniuw+vz9eHs8fb5+meku+Tu8vT4+cfd5bbT3tbm7PH2+AAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA" alt="...">                
         </div>
         <div class="chat-users panel-right">
           <div class="panel-title"><h5>Online Users</h5></div>
           <div class="panel-content nopadding">
-            <ul class="contact-list">
-              <li class="online new" id="user-michelle"><a href="#"><img src="/assets/demo/av1.jpg" alt=""> <span>Michelle</span></a><span class="msg-count badge badge-info">3</span></li>
-              
-              <li class="online" id="user-cartoon-man"><a href="#"><img src="/assets/demo/av3.jpg" alt=""> <span>Cartoon Man</span></a></li>
-              <li class="online" id="user-rick-newton"><a href="#"><img src="/assets/demo/av1.jpg" alt=""> <span>Rick Newton</span></a></li>
-              <li class="online new" id="user-zack-renson"><a href="#"><img src="/assets/demo/av2.jpg" alt=""> <span>Zack Renson</span></a><span class="msg-count badge badge-info">1</span></li>
-              <li id="user-vladimir-ivanov"><a href="#"><img src="/assets/demo/av3.jpg" alt=""> <span>Wladimir Ivanov</span></a></li>
-              <li id="user-master-moda"><a href="#"><img src="/assets/demo/av1.jpg" alt=""> <span>Master Moda</span></a></li>
+            <ul class="contact-list" id="project_users_list">
+              <% @project.users.each do |user|%>
+                <li>
+                  <a href="javascript: void(0);">
+                    <img alt="" src="<%=avatar_url(user)%>" /> <span><%=user.name%></span>
+                  </a>
+                  <span id="chat_user_<%=user.id.to_s%>" data-userid="<%=user.id.to_s%>" class="msg-count badge"></span>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<div id="comments">
-  <b>Loading Comments...</b></br>
-  <img width="16" height="11" style="margin:0 0 3px 5px" src="data:image/gif;base64,R0lGODlhEAALAPQAAP///z2LqeLt8dvp7u7090GNqz2LqV+fuJ/F1IW2ycrf51aatHWswaXJ14i4ys3h6FmctUCMqniuw+vz9eHs8fb5+meku+Tu8vT4+cfd5bbT3tbm7PH2+AAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA" alt="...">
 </div>
 <script type="text/javascript" src="/assets/unicorn.chat.js?body=1"></script>
 <link type="text/css" rel="stylesheet" media="screen" href="<%=Settings.rdf_comment.asset_host%>/assets/api.css">
@@ -51,7 +39,7 @@
 $(document).ready(function($) {
 
   var options = {
-    container   : '#comments',
+    container   : '#chat-box',
     site_key    : '<%=Settings.rdf_comment.site_key%>',
     topic_key   : <%= @project.id %>,
     topic_url   : '<%= @project.name %>',
@@ -63,7 +51,10 @@ $(document).ready(function($) {
     user_logged_in : 'true',
     logged_in_message : 'Welcome to Batbugger',
     author_key  : '123456',
-    user_image  : 'abcd',
+    user_image  : '<%=avatar_url(current_user)%>',
+    user_email  :  '<%=current_user.email%>',
+    username    :  '<%=current_user.name%>',
+    user_id     :  '<%=current_user.id.to_s%>',
     auth_token  : '123456789'
   };
 
@@ -111,10 +102,18 @@ $(document).ready(function($) {
   loadCommentScript('src', focusCurrentHash);
 
   function focusCurrentHash(){ 
-    var hash = window.location.hash;
-    window.location.hash = "";
-    window.location.hash = hash;
   }
   
 });
 </script>
+<style>
+#content{
+  padding-bottom: 0px;
+}
+.content-header-override {
+    height: 0px !important;
+}
+#project_users_list .msg-count {
+  height: 3px;
+}
+</style>
