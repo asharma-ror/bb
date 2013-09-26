@@ -1,0 +1,7 @@
+rdf_comment:
+  apply_juvia?:  true
+  site_key: 'tcanjy5prti9lznjiob3k4br3c88z7h'
+  url: 'http://batbugger-chat.herokuapp.com'
+  asset_host: 'http://batbugger-chat.herokuapp.com'
+  secret_key: '123456'
+
