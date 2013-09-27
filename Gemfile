@@ -42,6 +42,7 @@ gem "high_voltage"
 gem "friendly_id"
 gem 'carrierwave'
 gem 'rmagick'
+gem 'remotipart', '~> 1.0'
 gem 'enumerize'
 gem 'devise_invitable'
 gem 'geokit-rails3'
@@ -50,7 +51,7 @@ gem 'tinder'
 gem 'stripe'
 gem 'activemerchant'
 gem 'rails_config'
-
+gem 'cloudinary'
 
 gem 'bootstrap-sass', '~> 2.2.1.1'
 gem 'roadie'

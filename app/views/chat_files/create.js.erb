@@ -1,0 +1,6 @@
+<% unless @error.present? %>
+  $('#error').html('<%= image_tag @chat_file.image_url.to_s %>');
+  
+<% else %>
+  $('#error').html("<%=@error%>");
+<% end %>

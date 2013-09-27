@@ -26,6 +26,25 @@
               <% end %>
             </ul>
           </div>
+          <div class="panel-title" style="margin-top:30px"><h5>File Upload</h5></div>
+          <div class="panel-content nopadding">
+          
+          
+          
+            <%= form_for ChatFile.new, :html => {:multipart => true, :remote => true} do |f| %>
+              <p>
+                <%= f.file_field :image ,{:size => "10"} %>
+              </p>
+              <p><%= f.submit "Upload" %></p>
+           <% end %>
+
+           <div id="error"></div>
+         </div>
+          
+          
+          
+          
+          
         </div>
       </div>
     </div>
@@ -34,6 +53,7 @@
 <link type="text/css" rel="stylesheet" media="screen" href="<%=Settings.rdf_comment.asset_host%>/assets/api.css">
 
 <script type="text/javascript" class="juvia" >
+$('#chat_file_image').attr('size', 10);
 $(document).ready(function($) {
 
   var options = {

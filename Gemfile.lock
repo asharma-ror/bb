@@ -41,6 +41,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     arel (3.0.2)
+    aws_cf_signer (0.1.2)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.2.1.1)
       sass (~> 3.2)
@@ -49,6 +50,9 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     chunky_png (1.2.8)
+    cloudinary (1.0.63)
+      aws_cf_signer
+      rest-client
     columnize (0.3.6)
     compass (0.12.2)
       chunky_png (~> 1.2)
@@ -194,6 +198,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.2)
@@ -252,6 +257,7 @@ DEPENDENCIES
   activemerchant
   bootstrap-sass (~> 2.2.1.1)
   carrierwave
+  cloudinary
   compass-rails
   configuration
   country_select
@@ -276,6 +282,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails-i18n
   rails_config
+  remotipart (~> 1.0)
   rmagick
   roadie
   sass-rails (~> 3.2.0)

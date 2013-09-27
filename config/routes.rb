@@ -21,7 +21,9 @@ Cat::Application.routes.draw do
   get 'project/:project_id/errors/delete' => "errors#delete_permanently", :as => :delete_permanently
 
   match 'dashboard' => 'home#dashboard', :as => :dashboard
-
+ 
+ resources :chat_files
+ 
  resources :users do
     collection do
       get 'upgrade'
