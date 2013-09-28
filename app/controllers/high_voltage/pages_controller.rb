@@ -1,19 +1,7 @@
 class HighVoltage::PagesController < ApplicationController
-    skip_before_filter :authenticate_user!
-
+  unloadable
+  skip_before_filter :authenticate_user!
   layout Proc.new { |_| HighVoltage.layout }
-
-  if respond_to?('caches_action')
-    caches_action :show, if: Proc.new {
-      HighVoltage.action_caching
-    }
-  end
-
-  if respond_to?('caches_page')
-    caches_page :show, if: Proc.new {
-      HighVoltage.page_caching
-    }
-  end
 
   rescue_from ActionView::MissingTemplate do |exception|
     if exception.message =~ %r{Missing template #{page_finder.content_path}}
