@@ -52,6 +52,7 @@ gem 'stripe'
 gem 'activemerchant'
 gem 'rails_config'
 gem 'cloudinary'
+gem 'filepicker-rails'
 
 gem 'bootstrap-sass', '~> 2.2.1.1'
 gem 'roadie'

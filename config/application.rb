@@ -18,6 +18,7 @@ module Cat
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib/validators)
+    config.filepicker_rails.api_key = "AbmCAq5PFT8Y9GIOYrc3Kz"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

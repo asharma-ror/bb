@@ -1,6 +1,8 @@
 <% unless @error.present? %>
-  $('#error').html('<%= image_tag @chat_file.image_url.to_s %>');
-  
+  var sent_file = Juvia.username + " sent a file, "+ "<%= escape_javascript(link_to "click to download", @chat_file.filepicker_url, :target => "_blank") %>"
+  Juvia.sendFile(sent_file);
+  $('#error').html("");
+  $('#chat_file_filepicker_url').val("");
 <% else %>
   $('#error').html("<%=@error%>");
 <% end %>

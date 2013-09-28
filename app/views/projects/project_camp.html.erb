@@ -33,12 +33,14 @@
           
             <%= form_for ChatFile.new, :html => {:multipart => true, :remote => true} do |f| %>
               <p>
-                <%= f.file_field :image ,{:size => "10"} %>
+                <%= f.label :filepicker_url, "Upload Your File:" %>
+                <%= f.filepicker_field :filepicker_url %>
               </p>
               <p><%= f.submit "Upload" %></p>
            <% end %>
 
-           <div id="error"></div>
+           <div id="error">
+           </div>
          </div>
           
           
