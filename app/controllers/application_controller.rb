@@ -82,6 +82,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_project_subscription
+    return true
     project_id = params[:id].blank? ? params[:project_id] : params[:id]
     project = current_user.active_projects.find(project_id)
     subscription = project.subscription
