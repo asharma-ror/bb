@@ -11,6 +11,10 @@
     </li>
     
     <li class="btn btn-inverse" >
+      <%= link_to '<i class="icon icon-comment"></i> <span class="text">Group-Chat</span>'.html_safe, (project_camp_project_path(@project) rescue chat_path) %>
+    </li>
+    
+    <li class="btn btn-inverse" >
       <%= link_to '<i class="icon icon-home"></i> <span class="text">Home</span>'.html_safe, (current_user ? projects_path : root_path) %>
     </li>
 

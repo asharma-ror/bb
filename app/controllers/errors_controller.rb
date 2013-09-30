@@ -20,6 +20,15 @@ class ErrorsController < ApplicationController
       redirect_to new_project_path
     end
   end
+  
+  def chat
+    project = current_user.projects.first
+    if project
+      redirect_to project_camp_project_path(project)
+    else
+      redirect_to new_project_path
+    end
+  end
 
   # get method
   def resolved

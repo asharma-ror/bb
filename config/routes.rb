@@ -10,6 +10,7 @@ Cat::Application.routes.draw do
   match 'pages/home' => 'high_voltage/pages#show', :id => 'home'
 
   get 'projects/tracker/' => "errors#tracker", :as => :tracker
+  get 'projects/chat/' => "errors#chat", :as => :chat
   get 'project/:project_id/errors/' => "errors#exceptions", :as => :exception
   get 'project/:project_id/resolved/' => "errors#resolved", :as => :resolved
   get 'project/:project_id/all_exceptions/' => "errors#all_exceptions", :as => :all_exception
