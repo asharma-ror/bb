@@ -63,7 +63,7 @@ Cat::Application.routes.draw do
     end
     member do
       get 'project_camp'
-      put 'accept'
+      get 'accept'
       delete 'decline'
       post 'invitation'
       post 'pivotal_authenticate'
