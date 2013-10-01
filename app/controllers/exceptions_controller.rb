@@ -12,7 +12,7 @@ class ExceptionsController < ApplicationController
         error = project.project_errors.create(:count=> 1,
           :desc => params["error"]["message"].to_s,
           :status => :active,
-          :title => params["error"]["class"].to_s + " in " + params["request"]["component"].to_s + " # " + params["request"]["action"].to_s +" in " + params["server"]["environment_name"].to_s,
+          :title => "Error",
           :url => params["request"]["url"].to_s,
           :generated_at => Time.now
         )
