@@ -65,7 +65,7 @@ Cat::Application.routes.draw do
     member do
       get 'project_camp'
       get 'user_chat/:user_id', :action => "user_chat", :as => "user_chat"
-      put 'accept'
+      get 'accept'
       delete 'decline'
       post 'invitation'
       post 'pivotal_authenticate'

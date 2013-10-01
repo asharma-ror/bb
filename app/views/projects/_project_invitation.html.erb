@@ -14,7 +14,7 @@
 
                      <span class="user-info" style="font-weight:bold">Project Name: </span>
                      <span><%= project_invitation.project.name%></span>
-                     <%= link_to accept_project_path(project_invitation.project), :method => :put, :class => "btn btn-success btn-mini" do %>
+                     <%= link_to accept_project_path(project_invitation.project), :method => :get, :class => "btn btn-success btn-mini" do %>
                        Accept
                      <% end %>
                      <%= link_to decline_project_path(project_invitation.project), :method => :delete, :class => "btn btn-danger btn-mini" do %>
