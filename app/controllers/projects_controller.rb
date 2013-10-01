@@ -203,6 +203,11 @@ class ProjectsController < ApplicationController
     @project = current_user.active_projects.find(params[:id])
     render :layout => "chat_server"
   end
+  
+  def user_chat
+    @project = current_user.active_projects.find(params[:id])
+    render :layout => "chat_server"
+  end
 
   private
 

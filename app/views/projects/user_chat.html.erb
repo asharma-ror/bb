@@ -25,17 +25,20 @@
           </div>
           <div class="panel-content nopadding">
             <ul class="contact-list" id="project_users_list">
+                  <li>
+                    <a href="<%=project_camp_project_path(@project)%>">
+                      <strong><span>Project Team Chat</span></strong>
+                    </a>
+                  </li>
               <% @project.users.each do |user|%>
-                <li>
-                  <% if user != current_user %>
-                    <a href="<%= user_chat_project_path(@project, :user_id => user.id) %>">
-                  <% else %>
-                  <a href="javascript: void(0);">
-                  <% end %>
-                    <img alt="" src="<%=avatar_url(user)%>" /> <span><%=user.name%></span>
-                  </a>
-                  <span id="chat_user_<%=user.id.to_s%>" data-userid="<%=user.id.to_s%>" class="msg-count badge"></span>
-                </li>
+                <% if params[:user_id] == user.id.to_s or current_user.id.to_s ==  user.id.to_s %>
+                  <li>
+                    <a href="javascript: void(0);">
+                      <img alt="" src="<%=avatar_url(user)%>" /> <span><%=user.name%></span>
+                    </a>
+                    <span id="chat_user_<%=user.id.to_s%>" data-userid="<%=user.id.to_s%>" class="msg-count badge"></span>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
           </div>
@@ -74,7 +77,7 @@ $(document).ready(function($) {
   var options = {
     container   : '#chat-box',
     site_key    : '<%=Settings.rdf_comment.site_key%>',
-    topic_key   : <%= @project.id %>,
+    topic_key   : '<%= @project.id.to_s + "user_chat" + params[:user_id] %>',
     topic_url   : '<%= @project.name %>',
     topic_title : document.title || '<%= @project.name %>',
     include_base: !window.Juvia,
