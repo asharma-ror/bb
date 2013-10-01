@@ -10,10 +10,10 @@ class ExceptionsController < ApplicationController
       error_trace  = project.error_trace.select{|error_trace| error_trace.source_code == source_error}.first
       if error_trace.blank?
         error = project.project_errors.create(:count=> 1,
-          :desc => params["error"]["message"],
+          :desc => params["error"]["message"].to_s,
           :status => :active,
-          :title => params["error"]["class"] + " in " + params["request"]["component"] + " # " + params["request"]["action"] +" in " + params["server"]["environment_name"],
-          :url => params["request"]["url"],
+          :title => params["error"]["class"].to_s + " in " + params["request"]["component"].to_s + " # " + params["request"]["action"].to_s +" in " + params["server"]["environment_name"].to_s,
+          :url => params["request"]["url"].to_s,
           :generated_at => Time.now
         )
         error_trace = error.create_error_trace(:application => application_error,
